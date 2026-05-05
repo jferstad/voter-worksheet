@@ -132,12 +132,15 @@
     <div class="panel">
       <h2>Blinded survey cards</h2>
       <p class="muted">Candidate names stay masked in this section until you reveal them. You can rate agreement with the statement, record whether it makes you more or less likely to consider the candidate, and add notes. The fit tab summarizes only your own ratings.</p>
-      <div class="filters" aria-label="Filter survey cards">
+      <div class="filters" aria-label="Filter survey cards" style="grid-template-columns:1.2fr .85fr .85fr .85fr .85fr">
         <label>Search cards
           <input type="search" id="search" placeholder="Search offices, issues, statement text, source notes…" />
         </label>
         <label>Office
           <select id="officeFilter"><option value="">All offices</option></select>
+        </label>
+        <label>Candidate set
+          <select id="surveyScopeFilter"><option value="main-polled">Main candidates filter</option><option value="all">Show all card candidates</option></select>
         </label>
         <label>Card type
           <select id="typeFilter"><option value="">All types</option><option value="Issue/position">Issue/position</option><option value="Record/experience">Record/experience</option><option value="Endorsement/support">Endorsement/support</option><option value="Ballot designation">Ballot designation</option></select>
@@ -2853,6 +2856,7 @@ function updateStats(){ renderStats(); renderNoteStats(); renderScoreStats(); }
 function filteredCards(){
   const q = document.getElementById('search')?.value.trim().toLowerCase() || '';
   const office = document.getElementById('officeFilter')?.value || '';
+  const scope = document.getElementById('surveyScopeFilter')?.value || 'main-polled';
   const type = document.getElementById('typeFilter')?.value || '';
   const status = document.getElementById('statusFilter')?.value || '';
   return cardOrder.map(cardById).filter(Boolean).filter(card=>{
@@ -2861,6 +2865,7 @@ function filteredCards(){
     const hay = [card.office, card.type, card.topic, card.statement, card.question, revealed ? card.candidate : candidateMask(card), cand?.party, cand?.designation].join(' ').toLowerCase();
     if(q && !hay.includes(q)) return false;
     if(office && card.office !== office) return false;
+    if(cand && !isPollFilteredLargeRace(cand, scope)) return false;
     if(type && card.type !== type) return false;
     if(status === 'answered' && !isAnswered(card.id)) return false;
     if(status === 'unanswered' && isAnswered(card.id)) return false;
@@ -3144,7 +3149,7 @@ function bindGlobal(){
     if(btn.dataset.tabButton==='scores') renderScores();
     if(btn.dataset.tabButton==='notes') renderNotes();
   }));
-  ['search','officeFilter','typeFilter','statusFilter'].forEach(id=>document.getElementById(id).addEventListener('input',renderCards));
+  ['search','officeFilter','surveyScopeFilter','typeFilter','statusFilter'].forEach(id=>document.getElementById(id).addEventListener('input',renderCards));
   ['candidateSearch','candidateOfficeFilter','candidateScopeFilter'].forEach(id=>document.getElementById(id).addEventListener('input',renderCandidates));
   ['scoreSearch','scoreOfficeFilter','scoreCoverageFilter','scoreSort'].forEach(id=>document.getElementById(id).addEventListener('input',renderScores));
   document.getElementById('revealAll').addEventListener('click',()=>{

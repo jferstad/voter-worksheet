@@ -9,6 +9,7 @@ Open `index.html` directly in a browser. No build step or server is required.
 ## What the app currently does
 
 - Presents blinded statements tied to candidate records, policy positions, background, and endorsements.
+- Defaults the blinded survey to main-candidate cards first, with a toggle to show all card candidates.
 - Lets the user rate agreement and candidate-research interest separately.
 - Lets the user record an overall 1-5 impression for every candidate in the candidate list.
 - Shows candidate fit scores based only on the user's own ratings and answered cards.

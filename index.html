@@ -1,0 +1,3173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>California Primary Neutral Voter Worksheet</title>
+<style>
+  :root{
+    --bg:#f7f7f4; --panel:#ffffff; --ink:#1f2937; --muted:#6b7280; --line:#d8d8d0;
+    --accent:#263e64; --accent-2:#eef2ff; --warn:#7c2d12; --good:#14532d; --shadow:0 10px 24px rgba(31,41,55,.10);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45}
+  header{background:linear-gradient(135deg,#1f3658,#315f92);color:white;padding:28px 18px 22px;border-bottom:4px solid #9fb4c9}
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-size:clamp(1.6rem,3vw,2.6rem);margin:.15rem 0 .5rem;line-height:1.1}
+  h2{font-size:1.35rem;margin:1.3rem 0 .65rem}
+  h3{font-size:1.08rem;margin:1rem 0 .45rem}
+  p{margin:.45rem 0}
+  .subtitle{font-size:1rem;opacity:.95;max-width:880px}
+  .pillrow{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+  .pill{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);border-radius:999px;padding:.28rem .68rem;font-size:.86rem}
+  main{padding:18px}
+  .notice{background:#fff7ed;border:1px solid #fed7aa;color:#431407;border-radius:14px;padding:14px 16px;margin:14px 0;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+  .notice strong{color:var(--warn)}
+  .grid{display:grid;gap:14px}
+  .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media(max-width:850px){.grid.two,.grid.three{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+  .toolbar{position:sticky;top:0;background:rgba(247,247,244,.96);backdrop-filter:saturate(1.2) blur(8px);z-index:20;border-bottom:1px solid var(--line);padding:12px 0;margin:0 0 14px}
+  .toolbar-inner{max-width:1180px;margin:0 auto;display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;padding:0 18px}
+  button,.btn,label.radio span{border:1px solid var(--line);background:white;border-radius:999px;padding:.55rem .8rem;cursor:pointer;font-weight:650;color:var(--ink)}
+  button:hover,.btn:hover,label.radio span:hover{border-color:#9ca3af;background:#f9fafb}
+  button.primary{background:var(--accent);color:white;border-color:var(--accent)}
+  button.danger{background:#fff1f2;color:#881337;border-color:#fecdd3}
+  button.ghost{background:transparent}
+  button.active{background:var(--accent);color:white;border-color:var(--accent)}
+  input[type="search"],select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink);padding:.65rem .75rem;font:inherit}
+  textarea{min-height:82px;resize:vertical}
+  .filters{display:grid;grid-template-columns:1.4fr .9fr .9fr .8fr;gap:.7rem;align-items:end}
+  @media(max-width:850px){.filters{grid-template-columns:1fr}}
+  .tabs{display:flex;gap:.5rem;flex-wrap:wrap}
+  .tab{display:none}.tab.active{display:block}
+  .card{border:1px solid var(--line);background:white;border-radius:18px;padding:16px;margin:13px 0;box-shadow:0 3px 14px rgba(31,41,55,.06)}
+  .card-top{display:flex;gap:.7rem;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+  .meta{display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .55rem}
+  .tag{display:inline-flex;align-items:center;border-radius:999px;border:1px solid #d1d5db;background:#f9fafb;color:#374151;padding:.18rem .52rem;font-size:.78rem;font-weight:650}
+  .tag.office{background:#eef2ff;border-color:#c7d2fe;color:#1e3a8a}
+  .tag.issue{background:#ecfeff;border-color:#a5f3fc;color:#164e63}
+  .tag.record{background:#f0fdf4;border-color:#bbf7d0;color:#14532d}
+  .tag.support{background:#fdf2f8;border-color:#fbcfe8;color:#831843}
+  .candidate-mask{font-weight:800;font-size:1.05rem}
+  .sourcebox{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;padding:.7rem;margin-top:.75rem;font-size:.9rem;color:#334155}
+  .small{font-size:.86rem;color:var(--muted)}
+  .muted{color:var(--muted)}
+  .radio-group{display:flex;gap:.45rem;flex-wrap:wrap;margin:.45rem 0 1rem}
+  label.radio{display:inline-flex;align-items:center}
+  label.radio input{position:absolute;opacity:0;pointer-events:none}
+  label.radio input:checked + span{background:var(--accent-2);border-color:#64748b;color:#111827;box-shadow:inset 0 0 0 1px #64748b}
+  .question{font-weight:760;margin-top:.65rem}
+  .answergrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.6rem}
+  @media(max-width:850px){.answergrid{grid-template-columns:1fr}}
+  .statrow{display:flex;gap:.75rem;flex-wrap:wrap}
+  .stat{background:white;border:1px solid var(--line);border-radius:14px;padding:10px 12px;min-width:150px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .stat strong{font-size:1.35rem;display:block}
+  .scorebar{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:.35rem 0 .2rem}
+  .scorebar span{display:block;height:100%;background:#2f6f73;border-radius:999px}
+  .scoreline{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;margin:.55rem 0}
+  .scorebig{font-size:1.65rem;font-weight:850;line-height:1}
+  .mini-list{margin:.45rem 0 0;padding-left:1.1rem}
+  .mini-list li{margin:.25rem 0}
+  .pollnote{background:#f0fdfa;border:1px solid #99f6e4;color:#134e4a;border-radius:12px;padding:.55rem .7rem;margin:.55rem 0;font-size:.88rem}
+  .candidate-actions{display:grid;grid-template-columns:minmax(220px,1fr) minmax(220px,1fr);gap:.7rem;margin-top:.7rem}
+  @media(max-width:850px){.candidate-actions{grid-template-columns:1fr}}
+  table{border-collapse:collapse;width:100%;background:white;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:.68rem .75rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:#f3f4f6;color:#374151;font-size:.88rem}
+  tr:last-child td{border-bottom:0}
+  details{border:1px solid var(--line);border-radius:14px;background:white;padding:.65rem .8rem;margin:.65rem 0}
+  summary{cursor:pointer;font-weight:800}
+  a{color:#174ea6;text-decoration-thickness:1px;text-underline-offset:2px}
+  .hidden{display:none!important}
+  .source-list li{margin:.35rem 0}
+  .footer{padding:22px 18px 38px;color:var(--muted);font-size:.92rem}
+  .candidate-card{display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:1rem;border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;background:white}
+  @media(max-width:700px){.candidate-card{grid-template-columns:1fr}}
+  .office-title{border-left:5px solid #64748b;padding-left:.65rem;margin-top:1.4rem}
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;background:#f3f4f6;border:1px solid #d1d5db;border-radius:6px;padding:.05rem .35rem;font-size:.82em}
+  .empty{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:18px;text-align:center;color:#475569}
+  .reveal{background:#f0f9ff;border-color:#bae6fd;color:#075985}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="small" style="color:#dbeafe">Starter worksheet generated May 4, 2026 · for a California statewide primary ballot research workflow</div>
+    <h1>California Primary Neutral Voter Worksheet</h1>
+    <p class="subtitle">A local, browser-only app for reviewing source-backed candidate statements, recording your own reactions, and estimating your own candidate fit. It summarizes your ratings without recommending how to vote.</p>
+    <div class="pillrow">
+      <span class="pill">San Mateo County / precinct 36013 starter</span>
+      <span class="pill">Blinded statement cards</span>
+      <span class="pill">Candidate fit scoring</span>
+      <span class="pill">Reveal identities when ready</span>
+      <span class="pill">Export CSV or JSON</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="tabs" role="tablist" aria-label="Sections">
+      <button class="active" data-tab-button="survey">Blinded survey</button>
+      <button data-tab-button="candidates">Candidate list</button>
+      <button data-tab-button="scores">Fit scores</button>
+      <button data-tab-button="notes">My notes</button>
+      <button data-tab-button="sources">Sources & caveats</button>
+    </div>
+    <button id="revealAll" class="reveal">Reveal all identities</button>
+    <button id="shuffleCards" class="ghost">Shuffle cards</button>
+    <button id="exportCsv">Export CSV</button>
+    <button id="exportJson">Export JSON</button>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="notice">
+    <strong>Neutrality note:</strong> This is not a recommendation engine. It helps you organize research and your own reactions. Candidate statements in official guides may be paid/submitted by candidates and not independently verified by election officials, so use the linked sources as starting points.
+  </section>
+
+  <section id="tab-survey" class="tab active">
+    <div class="panel">
+      <h2>Blinded survey cards</h2>
+      <p class="muted">Candidate names stay masked in this section until you reveal them. You can rate agreement with the statement, record whether it makes you more or less likely to consider the candidate, and add notes. The fit tab summarizes only your own ratings.</p>
+      <div class="filters" aria-label="Filter survey cards">
+        <label>Search cards
+          <input type="search" id="search" placeholder="Search offices, issues, statement text, source notes…" />
+        </label>
+        <label>Office
+          <select id="officeFilter"><option value="">All offices</option></select>
+        </label>
+        <label>Card type
+          <select id="typeFilter"><option value="">All types</option><option value="Issue/position">Issue/position</option><option value="Record/experience">Record/experience</option><option value="Endorsement/support">Endorsement/support</option><option value="Ballot designation">Ballot designation</option></select>
+        </label>
+        <label>Status
+          <select id="statusFilter"><option value="">All statuses</option><option value="answered">Answered</option><option value="unanswered">Unanswered</option><option value="revealed">Revealed</option><option value="masked">Still masked</option></select>
+        </label>
+      </div>
+    </div>
+    <div class="statrow" id="stats" style="margin:14px 0"></div>
+    <div id="cards"></div>
+  </section>
+
+  <section id="tab-candidates" class="tab">
+    <div class="panel">
+      <h2>Candidate list used in this worksheet</h2>
+      <p class="muted">This is a starter list drawn from the official certified statewide list and San Mateo County candidate roster. Use the 1-5 controls to capture your overall impression for any candidate, including candidates who only have official ballot-designation details so far.</p>
+      <div class="filters" style="grid-template-columns:1fr .9fr .9fr .9fr">
+        <label>Search candidates
+          <input type="search" id="candidateSearch" placeholder="Search name, party, office, designation…" />
+        </label>
+        <label>Office
+          <select id="candidateOfficeFilter"><option value="">All offices</option></select>
+        </label>
+        <label>Large races
+          <select id="candidateScopeFilter"><option value="main-polled">Main candidates filter</option><option value="all">Show full official list</option></select>
+        </label>
+        <span></span>
+      </div>
+    </div>
+    <div id="candidateList"></div>
+  </section>
+
+  <section id="tab-scores" class="tab">
+    <div class="panel">
+      <h2>Candidate fit scores</h2>
+      <p class="muted">These scores are a worksheet summary of your own inputs: direct 1-5 impressions plus any blinded-card agreement/reaction ratings. They are not predictions, endorsements, or recommendations.</p>
+      <div class="filters" style="grid-template-columns:1fr .9fr .9fr .9fr">
+        <label>Search scores
+          <input type="search" id="scoreSearch" placeholder="Search name, office, party, designation…" />
+        </label>
+        <label>Office
+          <select id="scoreOfficeFilter"><option value="">All offices</option></select>
+        </label>
+        <label>Show
+          <select id="scoreCoverageFilter"><option value="">All candidates</option><option value="rated">Rated or answered</option><option value="unrated">Unrated only</option></select>
+        </label>
+        <label>Sort
+          <select id="scoreSort"><option value="score">Fit score</option><option value="office">Office</option><option value="coverage">Rating coverage</option><option value="name">Name</option></select>
+        </label>
+      </div>
+    </div>
+    <div class="statrow" id="scoreStats" style="margin:14px 0"></div>
+    <div id="scoreList"></div>
+  </section>
+
+  <section id="tab-notes" class="tab">
+    <div class="panel">
+      <h2>My notes grouped by candidate</h2>
+      <p class="muted">This section groups what you entered. Use it as a checklist for who to research further, and use the fit tab for the score summary.</p>
+      <div class="statrow" id="noteStats" style="margin-top:.75rem"></div>
+      <p><button id="clearAll" class="danger">Clear all saved responses</button></p>
+    </div>
+    <div id="notesList"></div>
+  </section>
+
+  <section id="tab-sources" class="tab">
+    <div class="panel">
+      <h2>Sources, method, and limitations</h2>
+      <p>This app uses official election materials first, then nonpartisan or mainstream reporting for context. It avoids an automatic “best match” calculation because voting preferences are value judgments and source interpretation can be contested.</p>
+      <h3>How to use this safely</h3>
+      <ol>
+        <li>Start with the blinded cards and record your reactions without looking at names.</li>
+        <li>Reveal identities, then read the linked sources for any candidates you want to investigate.</li>
+        <li>Check your official sample ballot for races and candidates that are specific to your address.</li>
+        <li>Treat candidate-supplied statements as claims to verify, not as independent fact checks.</li>
+      </ol>
+      <h3>Source list</h3>
+      <ul id="sourceList" class="source-list"></ul>
+      <h3>Candidate-selection notes</h3>
+      <p>The candidate list defaults to filtering Governor to candidates named at 1% or higher in the newest poll found during the May 4, 2026 web check. Use “Show full official list” to see every ballot-listed candidate preserved from the official materials.</p>
+      <p>For local San Mateo County offices, the app includes the candidates visible in the county roster for the offices likely associated with this ballot starter. Because one photo cannot fully verify every address-specific contest, the local section is a research scaffold rather than a final ballot reconstruction.</p>
+    </div>
+  </section>
+</main>
+
+<div class="footer wrap">
+  Browser storage key: <span class="kbd">ca_primary_neutral_voter_worksheet_v1</span>. All responses stay in this browser unless you export them.
+</div>
+
+<script>
+const sources = {
+  sosPrimary: {name:'California Secretary of State — June 2, 2026 Primary Election', url:'https://www.sos.ca.gov/elections/upcoming-elections/primary-election-june-2-2026', note:'Official dates and election administration overview.'},
+  sosCert: {name:'California Secretary of State — Certified List of Candidates, June 2, 2026 Primary', url:'https://elections.cdn.sos.ca.gov/statewide-elections/2026-primary/cert-list-candidates.pdf', note:'Official statewide and district candidate names, parties, and ballot designations.'},
+  sosGov: {name:'Official Voter Information Guide — Governor candidate statements', url:'https://voterguide.sos.ca.gov/candidates/governor-candidate-statements.htm', note:'Candidate-supplied statements; Secretary of State notes they are not checked for accuracy.'},
+  sosLtGov: {name:'Official Voter Information Guide — Lieutenant Governor candidate statements', url:'https://voterguide.sos.ca.gov/candidates/lt-governor-candidate-statements.htm', note:'Candidate-supplied statements for candidates who purchased space.'},
+  sosTreasurer: {name:'Official Voter Information Guide — Treasurer candidate statements', url:'https://voterguide.sos.ca.gov/candidates/treasurer-candidate-statements.htm', note:'Candidate-supplied statements for candidates who purchased space.'},
+  sosInsurance: {name:'Official Voter Information Guide — Insurance Commissioner candidate statements', url:'https://voterguide.sos.ca.gov/candidates/insurance-commissioner-candidate-statements.htm', note:'Candidate-supplied statements for candidates who purchased space.'},
+  sanMateoRoster: {name:'San Mateo County — June 2, 2026 Roster of Candidates', url:'https://smcacre.gov/system/files/2026-03/51_candidateroster03022026.pdf', note:'County roster with local offices, ballot designations, websites, and statement filing notes; this starter uses the March 2, 2026 roster snapshot where line-level text was available.'},
+  sanMateoBallots: {name:'San Mateo County — Ballots and sample ballot resources', url:'https://www.smcacre.gov/elections/ballots', note:'County ballot lookup and ballot-material resources.'},
+  smcPrecinctMaps: {name:'San Mateo County — Precinct maps', url:'https://www.smcacre.gov/elections/precinct-maps-pdf', note:'County precinct map resources; the photo shows precinct 36013.'},
+  apGovDebate: {name:'Associated Press — California Governor debate coverage', url:'https://apnews.com/article/e9c4b4e399ef5642571ef2048f620c6d', note:'Neutral news coverage of candidates and debate topics.'},
+  kqedGov: {name:'KQED — California Governor voter guide', url:'https://www.kqed.org/voterguide/california/governor', note:'Questionnaire/interview/debate/news-based candidate summaries and support lists.'},
+  sfgatePoll: {name:'SFGate — CBS/YouGov Governor poll summary', url:'https://www.sfgate.com/politics/article/cbs-poll-governor-race-debate-22230776.php', note:'Polling snapshot used only to choose a research subset, not to recommend a candidate.'},
+  sfgateLatestGovPoll: {name:'SFGate — May 4, 2026 California Democratic Party Governor poll summary', url:'https://www.sfgate.com/politics/article/calif-governor-race-poll-22240696.php', note:'Newest poll found in this May 4 web check; used to filter Governor to candidates named at 1% or higher.'},
+  kpbsLtGov: {name:'KPBS / CalMatters — Lieutenant Governor race explainer', url:'https://www.kpbs.org/news/politics/2026/05/04/2026-primary-election-california-lieutenant-governor-race-explainer', note:'Voter-guide context for major Lieutenant Governor candidates and endorsements.'},
+  kpbsSuperintendent: {name:'KPBS / CalMatters — Superintendent of Public Instruction race explainer', url:'https://www.kpbs.org/news/politics/2026/05/04/2026-primary-election-superintendent-of-public-instruction-race-explainer', note:'Voter-guide context for prominent Superintendent candidates and endorsements.'},
+  kqedInsurance: {name:'KQED — Insurance Commissioner voter guide', url:'https://www.kqed.org/voterguide/california/insurance-commissioner', note:'Voter guide identifying notable Insurance Commissioner candidates.'},
+  sacBeeTreasurer: {name:'Sacramento Bee / McClatchy — Treasurer race editorial context', url:'https://www.sacbee.com/opinion/election-endorsements/article315562889.html', note:'Editorial context saying the Treasurer race primarily comes down to Anna Caballero and Eleni Kounalakis.'},
+  transparencyTreasurer: {name:'Transparency USA — California Treasurer campaign finance', url:'https://www.transparencyusa.org/ca/race/california-treasurer', note:'Campaign finance snapshot used as one viability signal for the Treasurer race.'},
+  sfchronBoe: {name:'San Francisco Chronicle — Board of Equalization District 2 editorial context', url:'https://www.sfchronicle.com/opinion/article/john-pimentel-board-equalization-california-22204357.php', note:'Editorial context comparing the BOE District 2 candidates and highlighting the incumbent and a major challenger.'},
+  sfchronSteyer: {name:'San Francisco Chronicle — Tom Steyer Governor interview summary', url:'https://www.sfchronicle.com/projects/2026/california-governor-election-candidates/tom-steyer/', note:'Candidate interview summary; may be paywalled.'},
+  sfchronHilton: {name:'San Francisco Chronicle — Steve Hilton Governor interview summary', url:'https://www.sfchronicle.com/projects/2026/california-governor-election-candidates/steve-hilton/', note:'Candidate interview summary; may be paywalled.'},
+  guardianMahan: {name:'The Guardian — Matt Mahan profile', url:'https://www.theguardian.com/us-news/2026/jan/29/california-governor-race-matt-mahan', note:'News profile with campaign themes.'},
+  almanacD3: {name:'The Almanac — San Mateo County District 3 supervisor race context', url:'https://www.almanacnews.com/news/2025/09/23/former-half-moon-bay-mayor-challenges-mueller-for-county-supervisor-district-3-seat/', note:'Local reporting on District 3 race and geography.'}
+};
+
+const candidates = [
+  {
+    "office": "Governor",
+    "name": "Akinyemi Agbede",
+    "party": "Democratic",
+    "designation": "Mathematician",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Mohammad Arif",
+    "party": "Democratic",
+    "designation": "Immigrants Organizer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Larry Azevedo",
+    "party": "Democratic",
+    "designation": "Businessman",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Xavier Becerra",
+    "party": "Democratic",
+    "designation": "Voting Rights Attorney",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Carolina Buhler",
+    "party": "Democratic",
+    "designation": "Civil Rights Advocate",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Louis A. De Barraicua",
+    "party": "Democratic",
+    "designation": "Teacher/Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Sophia Edum-a-Sam",
+    "party": "Democratic",
+    "designation": "Project Manager",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Derek Grasty",
+    "party": "Democratic",
+    "designation": "District Trustee/Educator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Joel E. Jacob",
+    "party": "Democratic",
+    "designation": "Business Owner/Entrepreneur",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Gary Howard Kidgell",
+    "party": "Democratic",
+    "designation": "Building Consultant",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Matthew Chase Levy",
+    "party": "Democratic",
+    "designation": "Entrepreneur/Physicist",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Matt Mahan",
+    "party": "Democratic",
+    "designation": "Mayor, San Jose",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Barack D. Obama Shaw",
+    "party": "Democratic",
+    "designation": "Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Thunder Parley",
+    "party": "Democratic",
+    "designation": "Market Analyst",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Katie Porter",
+    "party": "Democratic",
+    "designation": "Consumer Protection Advocate",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosGov",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Raji Rab",
+    "party": "Democratic",
+    "designation": "Aviator/Educator/Entrepreneur",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Satish Rao",
+    "party": "Democratic",
+    "designation": "Professor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Scott P Shields",
+    "party": "Democratic",
+    "designation": "Chief Executive Officer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Tom Steyer",
+    "party": "Democratic",
+    "designation": "Climate Advocate",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Eric Swalwell",
+    "party": "Democratic",
+    "designation": "U.S. Representative",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Tony K. Thurmond",
+    "party": "Democratic",
+    "designation": "California State Superintendent of Public Instruction",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosGov",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Antonio Villaraigosa",
+    "party": "Democratic",
+    "designation": "Housing Affordability Advocate",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Betty T. Yee",
+    "party": "Democratic",
+    "designation": "Family Care Navigator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosGov"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Erin \"Zez\" Zezulak",
+    "party": "Democratic",
+    "designation": "Consultant/Nurse/Businesswoman",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "James Athans Jr.",
+    "party": "Republican",
+    "designation": "Real Estate Agent",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Chad Bianco",
+    "party": "Republican",
+    "designation": "Riverside County Sheriff",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosGov",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Patricia De Luca Basualdo",
+    "party": "Republican",
+    "designation": "Real Estate Broker",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Randeep S. Dhillon",
+    "party": "Republican",
+    "designation": "Economist/Farmer/Businessman",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Rafael M. Hernandez",
+    "party": "Republican",
+    "designation": "Businessman/Songwriter/Author",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Steve Hilton",
+    "party": "Republican",
+    "designation": "Small Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "kqedGov",
+      "apGovDebate",
+      "sfgatePoll"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Alicia Olivia Lapp",
+    "party": "Republican",
+    "designation": "No Ballot Designation",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Leo Naranjo IV",
+    "party": "Republican",
+    "designation": "Retired Military Sergeant",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Tim Nelson",
+    "party": "Republican",
+    "designation": "Diplomat/Rights Advocate",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Gretha Solórzano",
+    "party": "Republican",
+    "designation": "Retired Nuclear Engineer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Leo Samuel Zacky",
+    "party": "Republican",
+    "designation": "Farmer/Businessman/Broadcaster",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "David Zickefoose",
+    "party": "Republican",
+    "designation": "Real Estate Investor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Tom Woodard",
+    "party": "Libertarian",
+    "designation": "Retired CEO",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Ramsey Robinson",
+    "party": "Peace and Freedom",
+    "designation": "School Social Worker",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Naomi Bar-Lev",
+    "party": "No Party Preference",
+    "designation": "Musician/Proprietor/Writer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Joseph Cabrera",
+    "party": "No Party Preference",
+    "designation": "Business Administrator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Elaine Culotti",
+    "party": "No Party Preference",
+    "designation": "Entrepreneur/Farmer/Developer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "LivingForGod AndCountry DeMott",
+    "party": "No Party Preference",
+    "designation": "Logistical Professional/Chaplain",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Serge Fiankan",
+    "party": "No Party Preference",
+    "designation": "Real Estate Broker",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Lukasz Adam Filinski",
+    "party": "No Party Preference",
+    "designation": "Father",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Max Fomin",
+    "party": "No Party Preference",
+    "designation": "Business Owner/Father",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Don J. Grundmann",
+    "party": "No Party Preference",
+    "designation": "Doctor of Chiropractic",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Jon Henderson",
+    "party": "No Party Preference",
+    "designation": "Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Lewis Herms",
+    "party": "No Party Preference",
+    "designation": "No Ballot Designation",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Dawit Kellel",
+    "party": "No Party Preference",
+    "designation": "Father",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Anne Komarovsk",
+    "party": "No Party Preference",
+    "designation": "Communications Executive",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Duane Terrence Loynes Jr.",
+    "party": "No Party Preference",
+    "designation": "No Ballot Designation",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Amanda Martin",
+    "party": "No Party Preference",
+    "designation": "Mother/Builder/Entrepreneur",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Brent Maupin",
+    "party": "No Party Preference",
+    "designation": "Civil Engineer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Daniel Mercuri",
+    "party": "No Party Preference",
+    "designation": "Father/Author/Businessman",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Mauro Alberto Orozco",
+    "party": "No Party Preference",
+    "designation": "Small Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Reza Safarnejad",
+    "party": "No Party Preference",
+    "designation": "Small Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Sam Sandak",
+    "party": "No Party Preference",
+    "designation": "Filmmaker",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Christine R. Sarmiento",
+    "party": "No Party Preference",
+    "designation": "Public Health Nurse",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Frederic C. Schultz",
+    "party": "No Party Preference",
+    "designation": "Human Rights Attorney",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Margaret Trowe",
+    "party": "No Party Preference",
+    "designation": "Hotel Worker",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Governor",
+    "name": "Nancy D. Young",
+    "party": "No Party Preference",
+    "designation": "CEO/Businesswoman/Pastor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Josh Fryday",
+    "party": "Democratic",
+    "designation": "Governor's Cabinet Member",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Janelle Kellman",
+    "party": "Democratic",
+    "designation": "Climate Risk Executive",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosLtGov"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Jeyson Lopez",
+    "party": "Democratic",
+    "designation": "Customer Experience Consultant",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Fiona Ma",
+    "party": "Democratic",
+    "designation": "State Treasurer/CPA",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosLtGov"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Oliver Ma",
+    "party": "Democratic",
+    "designation": "Civil Rights Lawyer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Tim Myers",
+    "party": "Democratic",
+    "designation": "Businessman/Musician/Producer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Abdur Rahman Sikder",
+    "party": "Democratic",
+    "designation": "Professor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Michael Tubbs",
+    "party": "Democratic",
+    "designation": "Anti-Poverty Non-Profit Director",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosLtGov"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Ebie Lynch",
+    "party": "Republican",
+    "designation": "Business Owner/Nurse",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "David Collenberg",
+    "party": "Republican",
+    "designation": "Farmer/Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "David Fennell",
+    "party": "Republican",
+    "designation": "Businessman",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Gloria Romero",
+    "party": "Republican",
+    "designation": "Educator/Businesswoman",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Skip Shelton",
+    "party": "Republican",
+    "designation": "Defense Technology Executive",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Alice Stek",
+    "party": "Peace and Freedom",
+    "designation": "Physician/OBGYN",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Rakesh Christian",
+    "party": "No Party Preference",
+    "designation": "Business Owner",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Lieutenant Governor",
+    "name": "Sean Collinson",
+    "party": "No Party Preference",
+    "designation": "Mediator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Secretary of State",
+    "name": "Shirley N. Weber",
+    "party": "Democratic",
+    "designation": "California Secretary of State",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Secretary of State",
+    "name": "Donald P. (Don) Wagner",
+    "party": "Republican",
+    "designation": "Orange County Supervisor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Secretary of State",
+    "name": "Gary N. Blenner",
+    "party": "Green",
+    "designation": "Teacher",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Secretary of State",
+    "name": "Michael Feinstein",
+    "party": "Green",
+    "designation": "Electoral Reform Consultant",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Controller",
+    "name": "Malia M. Cohen",
+    "party": "Democratic",
+    "designation": "State Controller/Mother",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Controller",
+    "name": "Herb W Morgan",
+    "party": "Republican",
+    "designation": "Chief Investment Officer",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Controller",
+    "name": "Meghann Adams",
+    "party": "Peace and Freedom",
+    "designation": "School Bus Driver",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Treasurer",
+    "name": "Anna M. Caballero",
+    "party": "Democratic",
+    "designation": "California State Senator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Treasurer",
+    "name": "Eleni Kounalakis",
+    "party": "Democratic",
+    "designation": "Lieutenant Governor of California",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosTreasurer"
+    ]
+  },
+  {
+    "office": "Treasurer",
+    "name": "Tony Vazquez",
+    "party": "Democratic",
+    "designation": "Member, State Board of Equalization",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosTreasurer"
+    ]
+  },
+  {
+    "office": "Treasurer",
+    "name": "Jennifer Hawks",
+    "party": "Republican",
+    "designation": "Retired Businesswoman",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosTreasurer"
+    ]
+  },
+  {
+    "office": "Treasurer",
+    "name": "David Serpa",
+    "party": "Republican",
+    "designation": "Businessman/Author/Father",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosTreasurer"
+    ]
+  },
+  {
+    "office": "Treasurer",
+    "name": "Glenn Turner",
+    "party": "Green",
+    "designation": "No Ballot Designation",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosTreasurer"
+    ]
+  },
+  {
+    "office": "Attorney General",
+    "name": "Rob Bonta",
+    "party": "Democratic",
+    "designation": "Incumbent",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Attorney General",
+    "name": "Michael E. Gates",
+    "party": "Republican",
+    "designation": "Deputy United States Attorney",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Attorney General",
+    "name": "Marjorie Mikels",
+    "party": "Green",
+    "designation": "Attorney/Justice Advocate",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Ben Allen",
+    "party": "Democratic",
+    "designation": "California State Senator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Steven Craig Bradford",
+    "party": "Democratic",
+    "designation": "Education Organization Boardmember",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Jane Kim",
+    "party": "Democratic",
+    "designation": "Attorney/Consumer Advocate",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosInsurance"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Patrick Wolff",
+    "party": "Democratic",
+    "designation": "Financial Analyst",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosInsurance"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Eric Thor Aarnio",
+    "party": "Republican",
+    "designation": "Contractor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Merritt Farren",
+    "party": "Republican",
+    "designation": "Consumer Advocate/Attorney",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosInsurance"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Robert P Howell",
+    "party": "Republican",
+    "designation": "Cybersecurity Company CEO",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Stacy A. Korsgaden",
+    "party": "Republican",
+    "designation": "Licensed Insurance Agent",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosInsurance"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Sean Lee",
+    "party": "Republican",
+    "designation": "Financial Services Executive",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Keith W. Davis",
+    "party": "American Independent",
+    "designation": "Insurance Agent",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Insurance Commissioner",
+    "name": "Eduardo \"Lalo\" Vargas",
+    "party": "Peace and Freedom",
+    "designation": "Science Teacher",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert",
+      "sosInsurance"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Richard Barrera",
+    "party": "Nonpartisan",
+    "designation": "State Superintendent Advisor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Wendy Castaneda Leal",
+    "party": "Nonpartisan",
+    "designation": "School District Superintendent",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Nichelle M. Henderson",
+    "party": "Nonpartisan",
+    "designation": "College Trustee/Teacher",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Frank Lara",
+    "party": "Nonpartisan",
+    "designation": "Teacher/Union VP",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Ainye Long",
+    "party": "Nonpartisan",
+    "designation": "Public School Teacher",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Gus Mattammal",
+    "party": "Nonpartisan",
+    "designation": "Educator/Executive/Author",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Al Muratsuchi",
+    "party": "Nonpartisan",
+    "designation": "Assemblymember/Classroom Educator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Josh Newman",
+    "party": "Nonpartisan",
+    "designation": "Educator/Strategic Advisor",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Anthony Rendon",
+    "party": "Nonpartisan",
+    "designation": "Democracy Advocate/Educator",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Superintendent of Public Instruction",
+    "name": "Sonja Shaw",
+    "party": "Nonpartisan",
+    "designation": "School District President",
+    "scope": "Statewide",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Board of Equalization, District 2",
+    "name": "Sally J. Lieber",
+    "party": "Democratic",
+    "designation": "Member, State Board of Equalization",
+    "scope": "District 2",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "Board of Equalization, District 2",
+    "name": "John Pimentel",
+    "party": "Democratic",
+    "designation": "Member, Board of Trustees, San Mateo County Community College District",
+    "scope": "District 2",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "Board of Equalization, District 2",
+    "name": "J Brett Marymee",
+    "party": "Republican",
+    "designation": "Small Business Owner",
+    "scope": "District 2",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Board of Equalization, District 2",
+    "name": "Mark McComas",
+    "party": "Republican",
+    "designation": "Small Business Advocate",
+    "scope": "District 2",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Board of Equalization, District 2",
+    "name": "Bill Shireman",
+    "party": "Republican",
+    "designation": "Taxpayer Advocate",
+    "scope": "District 2",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "Board of Equalization, District 2",
+    "name": "John W. Zaruka",
+    "party": "Republican",
+    "designation": "Retired Hospitality Executive",
+    "scope": "District 2",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "office": "U.S. Representative, District 15",
+    "name": "Anthony Van Dang",
+    "party": "Democratic",
+    "designation": "Policy Analyst",
+    "scope": "Congressional District 15",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "U.S. Representative, District 15",
+    "name": "Mantosh Kumar",
+    "party": "Democratic",
+    "designation": "Strategic Business Advisor",
+    "scope": "Congressional District 15",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "U.S. Representative, District 15",
+    "name": "Kevin Mullin",
+    "party": "Democratic",
+    "designation": "U.S. Representative",
+    "scope": "Congressional District 15",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "U.S. Representative, District 15",
+    "name": "Charles Hoelter",
+    "party": "Republican",
+    "designation": "Retired Training Supervisor",
+    "scope": "Congressional District 15",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "U.S. Representative, District 15",
+    "name": "Jim Garrity",
+    "party": "No Party Preference",
+    "designation": "Retired Police Inspector",
+    "scope": "Congressional District 15",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "State Assembly, District 21",
+    "name": "Diane Papan",
+    "party": "Democratic",
+    "designation": "California State Assemblymember",
+    "scope": "Assembly District 21",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "State Assembly, District 21",
+    "name": "Jabra J. Muhawieh",
+    "party": "Republican",
+    "designation": "Licensed Tax Professional",
+    "scope": "Assembly District 21",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Superintendent of Schools",
+    "name": "Chelsea Bonini",
+    "party": "Nonpartisan",
+    "designation": "Teacher / Attorney / Trustee",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Superintendent of Schools",
+    "name": "Héctor Camacho Jr.",
+    "party": "Nonpartisan",
+    "designation": "Teacher / Executive Director",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Board of Supervisors, District 3",
+    "name": "Joaquin Jiménez",
+    "party": "Nonpartisan",
+    "designation": "Community Organizer",
+    "scope": "County District 3",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Board of Supervisors, District 3",
+    "name": "Ray Mueller",
+    "party": "Nonpartisan",
+    "designation": "Incumbent",
+    "scope": "County District 3",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Assessor-County Clerk-Recorder",
+    "name": "Clinton Eric Freeman",
+    "party": "Nonpartisan",
+    "designation": "No Ballot Designation",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Assessor-County Clerk-Recorder",
+    "name": "David Canepa",
+    "party": "Nonpartisan",
+    "designation": "San Mateo County Supervisor",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Assessor-County Clerk-Recorder",
+    "name": "Jim Irizarry",
+    "party": "Nonpartisan",
+    "designation": "Assistant County Assessor",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Controller",
+    "name": "Thomas Royal Morgan II",
+    "party": "Nonpartisan",
+    "designation": "No Ballot Designation",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Controller",
+    "name": "Juan Raigoza",
+    "party": "Nonpartisan",
+    "designation": "San Mateo County Controller",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Coroner",
+    "name": "Robert J. Foucrault",
+    "party": "Nonpartisan",
+    "designation": "Coroner, County of San Mateo",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "office": "San Mateo County Treasurer-Tax Collector",
+    "name": "Sandie Arnott",
+    "party": "Nonpartisan",
+    "designation": "Treasurer-Tax Collector",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  }
+];
+
+const cards = [
+  {
+    "id": "gov-becerra-1",
+    "office": "Governor",
+    "candidate": "Xavier Becerra",
+    "type": "Ballot designation",
+    "topic": "Voting-rights legal background",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “Voting Rights Attorney.”",
+    "question": "Does a voting-rights legal background make you more interested in researching this Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-becerra-2",
+    "office": "Governor",
+    "candidate": "Xavier Becerra",
+    "type": "Issue/position",
+    "topic": "Affordability / market intervention",
+    "statement": "A voter guide summarized this candidate as focusing on price gouging, unjustified rate hikes, and using state power to lower costs where markets have failed.",
+    "question": "How do you react to this affordability approach?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-becerra-3",
+    "office": "Governor",
+    "candidate": "Xavier Becerra",
+    "type": "Issue/position",
+    "topic": "Tax policy / safety net",
+    "statement": "A voter guide summarized this candidate as supporting higher taxes on “mega wealthy” Californians while protecting programs such as Medi-Cal.",
+    "question": "How much do you agree with this tax-and-services direction?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-becerra-4",
+    "office": "Governor",
+    "candidate": "Xavier Becerra",
+    "type": "Endorsement/support",
+    "topic": "Institutional support",
+    "statement": "A voter guide listed support from the Assembly Speaker, California State Council of Laborers, and Planned Parenthood Affiliates of California.",
+    "question": "Do these types of supporters make you more or less likely to look closer at the candidate?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-bianco-1",
+    "office": "Governor",
+    "candidate": "Chad Bianco",
+    "type": "Record/experience",
+    "topic": "Law enforcement background",
+    "statement": "This candidate appears on the certified list as a Republican candidate with the ballot designation “Riverside County Sheriff.”",
+    "question": "Does sheriff experience make you more or less interested in a Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-bianco-2",
+    "office": "Governor",
+    "candidate": "Chad Bianco",
+    "type": "Issue/position",
+    "topic": "Taxes / regulation / oil",
+    "statement": "A voter guide summarized this candidate as promising to cut taxes and regulations, make California oil independent, oppose new taxes, reduce the gas tax, and cut housing red tape.",
+    "question": "How do you react to this economic and housing-policy approach?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-bianco-3",
+    "office": "Governor",
+    "candidate": "Chad Bianco",
+    "type": "Issue/position",
+    "topic": "Immigration enforcement",
+    "statement": "A voter guide summarized this candidate as promising to try to overturn California’s statewide sanctuary law.",
+    "question": "Does this stance make you more or less likely to research the candidate?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-hilton-1",
+    "office": "Governor",
+    "candidate": "Steve Hilton",
+    "type": "Ballot designation",
+    "topic": "Small-business background",
+    "statement": "This candidate appears on the certified list as a Republican candidate with the ballot designation “Small Business Owner.”",
+    "question": "Does small-business experience make you more or less interested in this Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-hilton-2",
+    "office": "Governor",
+    "candidate": "Steve Hilton",
+    "type": "Issue/position",
+    "topic": "Taxes / spending / regulation",
+    "statement": "A voter guide summarized this candidate as wanting lower taxes, spending, and regulations, including a proposal to eliminate state income tax under $100,000 and use a flat tax above that.",
+    "question": "How much do you agree with this tax-policy direction?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-hilton-3",
+    "office": "Governor",
+    "candidate": "Steve Hilton",
+    "type": "Issue/position",
+    "topic": "Housing / environmental regulation",
+    "statement": "A voter guide summarized this candidate as supporting capped development fees and reduced environmental regulations to expand single-family homebuilding.",
+    "question": "How do you react to this housing-policy approach?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-mahan-1",
+    "office": "Governor",
+    "candidate": "Matt Mahan",
+    "type": "Record/experience",
+    "topic": "Mayoral background",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “Mayor, San Jose.”",
+    "question": "Does big-city mayoral experience make you more interested in researching this Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-mahan-2",
+    "office": "Governor",
+    "candidate": "Matt Mahan",
+    "type": "Issue/position",
+    "topic": "Homelessness / housing and gas taxes",
+    "statement": "A voter guide summarized this candidate as touting a decrease in unsheltered homelessness as San José mayor and promising to cut taxes on housing development and gas.",
+    "question": "How do these priorities affect your interest in the candidate?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-porter-1",
+    "office": "Governor",
+    "candidate": "Katie Porter",
+    "type": "Ballot designation",
+    "topic": "Consumer protection background",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “Consumer Protection Advocate.”",
+    "question": "Does a consumer-protection background make you more interested in this Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-porter-2",
+    "office": "Governor",
+    "candidate": "Katie Porter",
+    "type": "Issue/position",
+    "topic": "Corporate taxes / income taxes / college costs",
+    "statement": "A voter guide summarized this candidate as proposing higher corporate taxes on high-earning companies to eliminate state income taxes for families under $100,000 and cover two years of in-state UC/CSU tuition.",
+    "question": "How much do you agree with this tax-and-education approach?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-porter-3",
+    "office": "Governor",
+    "candidate": "Katie Porter",
+    "type": "Record/experience",
+    "topic": "Campaign finance / anti-corruption",
+    "statement": "In an official candidate statement, this candidate emphasizes exposing corruption and refusing corporate and lobbyist donations.",
+    "question": "Does this campaign-finance positioning make you more or less interested in the candidate?",
+    "sources": [
+      "sosGov"
+    ]
+  },
+  {
+    "id": "gov-steyer-1",
+    "office": "Governor",
+    "candidate": "Tom Steyer",
+    "type": "Ballot designation",
+    "topic": "Climate background",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “Climate Advocate.”",
+    "question": "Does a climate-focused background make you more interested in this Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-steyer-2",
+    "office": "Governor",
+    "candidate": "Tom Steyer",
+    "type": "Issue/position",
+    "topic": "Housing / electricity / preschool / health care",
+    "statement": "A voter guide summarized this candidate as supporting one million affordable homes, building on surplus public lands, lowering electricity bills, expanding preschool, and supporting state-level single-payer health care.",
+    "question": "How do you react to this combination of priorities?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-steyer-3",
+    "office": "Governor",
+    "candidate": "Tom Steyer",
+    "type": "Issue/position",
+    "topic": "Commercial property and corporate tax policy",
+    "statement": "A voter guide summarized this candidate as supporting higher commercial property taxes and closing a multinational corporate tax loophole.",
+    "question": "How much do you agree with this revenue approach?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-thurmond-1",
+    "office": "Governor",
+    "candidate": "Tony K. Thurmond",
+    "type": "Record/experience",
+    "topic": "Education leadership",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “California State Superintendent of Public Instruction.”",
+    "question": "Does statewide education leadership experience make you more interested in this Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-thurmond-2",
+    "office": "Governor",
+    "candidate": "Tony K. Thurmond",
+    "type": "Issue/position",
+    "topic": "Schools / dyslexia / public services",
+    "statement": "A voter guide summarized this candidate as supporting a billionaire tax and more funding for dyslexia screening and tutoring; his official statement emphasizes school funding, preschool, school meals, health care, and housing.",
+    "question": "How much do these education and services priorities matter to you in the Governor race?",
+    "sources": [
+      "kqedGov",
+      "sosGov"
+    ]
+  },
+  {
+    "id": "gov-villaraigosa-1",
+    "office": "Governor",
+    "candidate": "Antonio Villaraigosa",
+    "type": "Ballot designation",
+    "topic": "Housing affordability background",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “Housing Affordability Advocate.”",
+    "question": "Does a housing-affordability-centered ballot designation make you more interested in this Governor candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-villaraigosa-2",
+    "office": "Governor",
+    "candidate": "Antonio Villaraigosa",
+    "type": "Issue/position",
+    "topic": "Homebuyer assistance / immigration enforcement oversight",
+    "statement": "A voter guide summarized this candidate as promising to boost homebuyer assistance programs and create a task force concerning federal immigration agents’ adherence to state law.",
+    "question": "How do you react to this pair of priorities?",
+    "sources": [
+      "kqedGov"
+    ]
+  },
+  {
+    "id": "gov-yee-1",
+    "office": "Governor",
+    "candidate": "Betty T. Yee",
+    "type": "Record/experience",
+    "topic": "Fiscal administration",
+    "statement": "In an official candidate statement, this candidate emphasizes prior service as a state budget director, Board of Equalization member, and State Controller.",
+    "question": "Does this fiscal-administration background make you more interested in this Governor candidate?",
+    "sources": [
+      "sosGov",
+      "sosCert"
+    ]
+  },
+  {
+    "id": "gov-yee-2",
+    "office": "Governor",
+    "candidate": "Betty T. Yee",
+    "type": "Record/experience",
+    "topic": "Budget oversight claims",
+    "statement": "In an official candidate statement, this candidate says she uncovered billions in misspending and protected retirement funds.",
+    "question": "Do these oversight claims make you more or less likely to research the candidate?",
+    "sources": [
+      "sosGov"
+    ]
+  },
+  {
+    "id": "ltgov-kellman-1",
+    "office": "Lieutenant Governor",
+    "candidate": "Janelle Kellman",
+    "type": "Issue/position",
+    "topic": "Climate risk / utilities / insurance",
+    "statement": "In an official candidate statement, this candidate emphasizes climate-risk expertise, disaster preparedness, lower electricity bills, and insurance-market stabilization.",
+    "question": "How much do you want the Lieutenant Governor to focus on these issues?",
+    "sources": [
+      "sosLtGov"
+    ]
+  },
+  {
+    "id": "ltgov-kellman-2",
+    "office": "Lieutenant Governor",
+    "candidate": "Janelle Kellman",
+    "type": "Issue/position",
+    "topic": "Community college / career education",
+    "statement": "In an official candidate statement, this candidate supports expanded vocational and career-aligned education and says community college should be free for California residents.",
+    "question": "How much do you agree with this higher-education direction?",
+    "sources": [
+      "sosLtGov"
+    ]
+  },
+  {
+    "id": "ltgov-tubbs-1",
+    "office": "Lieutenant Governor",
+    "candidate": "Michael Tubbs",
+    "type": "Record/experience",
+    "topic": "Stockton mayor / guaranteed income background",
+    "statement": "In an official candidate statement, this candidate cites work as Stockton mayor, a guaranteed-income pilot, and local public-safety and fiscal-health claims.",
+    "question": "Does this background make you more or less interested in the candidate?",
+    "sources": [
+      "sosLtGov"
+    ]
+  },
+  {
+    "id": "ltgov-tubbs-2",
+    "office": "Lieutenant Governor",
+    "candidate": "Michael Tubbs",
+    "type": "Issue/position",
+    "topic": "Affordability / higher education / housing",
+    "statement": "In an official candidate statement, this candidate says he would focus on affordability, higher education costs, affordable housing, guaranteed income, and accountability.",
+    "question": "How do you react to this issue focus?",
+    "sources": [
+      "sosLtGov"
+    ]
+  },
+  {
+    "id": "ltgov-ma-1",
+    "office": "Lieutenant Governor",
+    "candidate": "Fiona Ma",
+    "type": "Issue/position",
+    "topic": "University tuition / coastal policy",
+    "statement": "In an official candidate statement, this candidate says she would vote to freeze tuition and oppose reopening offshore drilling while serving on boards and commissions tied to the office.",
+    "question": "How do you react to these priorities for Lieutenant Governor?",
+    "sources": [
+      "sosLtGov"
+    ]
+  },
+  {
+    "id": "ltgov-fryday-1",
+    "office": "Lieutenant Governor",
+    "candidate": "Josh Fryday",
+    "type": "Ballot designation",
+    "topic": "Governor’s Cabinet background",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “Governor’s Cabinet Member.”",
+    "question": "Does this state-administration background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "sos-weber-1",
+    "office": "Secretary of State",
+    "candidate": "Shirley N. Weber",
+    "type": "Record/experience",
+    "topic": "Incumbent election administrator",
+    "statement": "This candidate appears on the certified list as the incumbent California Secretary of State.",
+    "question": "Does incumbency in election administration make you more or less interested in this candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "sos-wagner-1",
+    "office": "Secretary of State",
+    "candidate": "Donald P. (Don) Wagner",
+    "type": "Record/experience",
+    "topic": "County supervisor background",
+    "statement": "This candidate appears on the certified list as a Republican candidate with the ballot designation “Orange County Supervisor.”",
+    "question": "Does county-supervisor experience make you more or less interested in this candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "controller-cohen-1",
+    "office": "Controller",
+    "candidate": "Malia M. Cohen",
+    "type": "Record/experience",
+    "topic": "Incumbent controller",
+    "statement": "This candidate appears on the certified list as the incumbent state Controller.",
+    "question": "Does incumbent Controller experience make you more or less interested in this candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "controller-morgan-1",
+    "office": "Controller",
+    "candidate": "Herb W Morgan",
+    "type": "Record/experience",
+    "topic": "Investment background",
+    "statement": "This candidate appears on the certified list with the ballot designation “Chief Investment Officer.”",
+    "question": "Does investment-management experience make you more or less interested in a Controller candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "ag-bonta-1",
+    "office": "Attorney General",
+    "candidate": "Rob Bonta",
+    "type": "Record/experience",
+    "topic": "Incumbent Attorney General",
+    "statement": "This candidate appears on the certified list as the incumbent Attorney General.",
+    "question": "Does incumbent Attorney General experience make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "ag-gates-1",
+    "office": "Attorney General",
+    "candidate": "Michael E. Gates",
+    "type": "Record/experience",
+    "topic": "Federal prosecutor background",
+    "statement": "This candidate appears on the certified list with the ballot designation “Deputy United States Attorney.”",
+    "question": "Does federal-prosecutor experience make you more or less interested in this Attorney General candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "treasurer-caballero-1",
+    "office": "Treasurer",
+    "candidate": "Anna M. Caballero",
+    "type": "Record/experience",
+    "topic": "State senator background",
+    "statement": "This candidate appears on the certified list as a Democratic candidate with the ballot designation “California State Senator.”",
+    "question": "Does state-legislative experience make you more or less interested in a Treasurer candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "treasurer-kounalakis-1",
+    "office": "Treasurer",
+    "candidate": "Eleni Kounalakis",
+    "type": "Issue/position",
+    "topic": "Public finance / housing / pensions",
+    "statement": "In an official candidate statement, this candidate emphasizes public finance for affordable housing, pension protection, and responsible state financial management.",
+    "question": "How much do you agree with this Treasurer-focused platform?",
+    "sources": [
+      "sosTreasurer"
+    ]
+  },
+  {
+    "id": "treasurer-kounalakis-2",
+    "office": "Treasurer",
+    "candidate": "Eleni Kounalakis",
+    "type": "Endorsement/support",
+    "topic": "Major endorsements",
+    "statement": "In an official candidate statement, this candidate lists support from the Governor, U.S. senators, a former House Speaker, and California teachers.",
+    "question": "Do these types of supporters make you more or less interested in the candidate?",
+    "sources": [
+      "sosTreasurer"
+    ]
+  },
+  {
+    "id": "treasurer-turner-1",
+    "office": "Treasurer",
+    "candidate": "Glenn Turner",
+    "type": "Issue/position",
+    "topic": "Divestment / public banks",
+    "statement": "In an official candidate statement, this candidate supports divestment from Israel, weapons manufacturers, and fossil fuels, plus a billionaire tax, student debt jubilee, health care for all, and public banks.",
+    "question": "How do you react to this approach for the Treasurer’s office?",
+    "sources": [
+      "sosTreasurer"
+    ]
+  },
+  {
+    "id": "treasurer-hawks-1",
+    "office": "Treasurer",
+    "candidate": "Jennifer Hawks",
+    "type": "Issue/position",
+    "topic": "Fiscal discipline / transparency",
+    "statement": "In an official candidate statement, this candidate emphasizes discipline, accountability, transparency, audits, and public reporting.",
+    "question": "How much do you agree with this Treasurer-office focus?",
+    "sources": [
+      "sosTreasurer"
+    ]
+  },
+  {
+    "id": "treasurer-vazquez-1",
+    "office": "Treasurer",
+    "candidate": "Tony Vazquez",
+    "type": "Record/experience",
+    "topic": "BOE and local governance background",
+    "statement": "In an official candidate statement, this candidate cites service on the Board of Equalization, the Franchise Tax Board, and local municipal government.",
+    "question": "Does this tax-board and local-governance background make you more or less interested in a Treasurer candidate?",
+    "sources": [
+      "sosTreasurer"
+    ]
+  },
+  {
+    "id": "ins-wolff-1",
+    "office": "Insurance Commissioner",
+    "candidate": "Patrick Wolff",
+    "type": "Issue/position",
+    "topic": "Insurance expertise / donations",
+    "statement": "In an official candidate statement, this candidate emphasizes insurance and financial-analysis experience, a fair and transparent system, and not accepting insurance-company or fossil-fuel-company money.",
+    "question": "How do you react to this stated approach?",
+    "sources": [
+      "sosInsurance"
+    ]
+  },
+  {
+    "id": "ins-korsgaden-1",
+    "office": "Insurance Commissioner",
+    "candidate": "Stacy A. Korsgaden",
+    "type": "Issue/position",
+    "topic": "Market competition / regulation",
+    "statement": "In an official candidate statement, this candidate argues overregulation and market distortion have reduced options and raised prices, and says restoring competition can lower costs.",
+    "question": "How much do you agree with this insurance-market approach?",
+    "sources": [
+      "sosInsurance"
+    ]
+  },
+  {
+    "id": "ins-kim-1",
+    "office": "Insurance Commissioner",
+    "candidate": "Jane Kim",
+    "type": "Issue/position",
+    "topic": "Rate freezes / public disaster insurance",
+    "statement": "In an official candidate statement, this candidate says she will take no insurance-industry money, cap excessive profits, freeze rates after claims, and create a public disaster-insurance program.",
+    "question": "How do you react to this insurance-regulation approach?",
+    "sources": [
+      "sosInsurance"
+    ]
+  },
+  {
+    "id": "ins-farren-1",
+    "office": "Insurance Commissioner",
+    "candidate": "Merritt Farren",
+    "type": "Record/experience",
+    "topic": "Wildfire survivor / legal and customer operations background",
+    "statement": "In an official candidate statement, this candidate describes being a wildfire survivor, participating in rate-increase proceedings, and having legal and customer-operations experience at major companies.",
+    "question": "Does this background make you more or less interested in the candidate?",
+    "sources": [
+      "sosInsurance"
+    ]
+  },
+  {
+    "id": "ins-vargas-1",
+    "office": "Insurance Commissioner",
+    "candidate": "Eduardo \"Lalo\" Vargas",
+    "type": "Issue/position",
+    "topic": "Rate freeze / public insurance system",
+    "statement": "In an official candidate statement, this candidate pledges to freeze insurance rates, investigate claim procedures, and fight for a public insurance system.",
+    "question": "How do you react to this approach?",
+    "sources": [
+      "sosInsurance"
+    ]
+  },
+  {
+    "id": "ins-allen-1",
+    "office": "Insurance Commissioner",
+    "candidate": "Ben Allen",
+    "type": "Record/experience",
+    "topic": "State senator background",
+    "statement": "This candidate appears on the certified list with the ballot designation “California State Senator.”",
+    "question": "Does state-legislative experience make you more or less interested in an Insurance Commissioner candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-richard-barrera",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Richard Barrera",
+    "type": "Ballot designation",
+    "topic": "State Superintendent advisor",
+    "statement": "This candidate appears on the certified list with the ballot designation “State Superintendent Advisor.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-wendy-castaneda-leal",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Wendy Castaneda Leal",
+    "type": "Ballot designation",
+    "topic": "School district superintendent",
+    "statement": "This candidate appears on the certified list with the ballot designation “School District Superintendent.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-nichelle-m-henderson",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Nichelle M. Henderson",
+    "type": "Ballot designation",
+    "topic": "College trustee / teacher",
+    "statement": "This candidate appears on the certified list with the ballot designation “College Trustee/Teacher.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-frank-lara",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Frank Lara",
+    "type": "Ballot designation",
+    "topic": "Teacher / union VP",
+    "statement": "This candidate appears on the certified list with the ballot designation “Teacher/Union VP.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-ainye-long",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Ainye Long",
+    "type": "Ballot designation",
+    "topic": "Public school teacher",
+    "statement": "This candidate appears on the certified list with the ballot designation “Public School Teacher.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-gus-mattammal",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Gus Mattammal",
+    "type": "Ballot designation",
+    "topic": "Educator / executive / author",
+    "statement": "This candidate appears on the certified list with the ballot designation “Educator/Executive/Author.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-al-muratsuchi",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Al Muratsuchi",
+    "type": "Ballot designation",
+    "topic": "Assemblymember / classroom educator",
+    "statement": "This candidate appears on the certified list with the ballot designation “Assemblymember/Classroom Educator.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-josh-newman",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Josh Newman",
+    "type": "Ballot designation",
+    "topic": "Educator / strategic advisor",
+    "statement": "This candidate appears on the certified list with the ballot designation “Educator/Strategic Advisor.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-anthony-rendon",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Anthony Rendon",
+    "type": "Ballot designation",
+    "topic": "Democracy advocate / educator",
+    "statement": "This candidate appears on the certified list with the ballot designation “Democracy Advocate/Educator.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "spi-sonja-shaw",
+    "office": "Superintendent of Public Instruction",
+    "candidate": "Sonja Shaw",
+    "type": "Ballot designation",
+    "topic": "School district president",
+    "statement": "This candidate appears on the certified list with the ballot designation “School District President.”",
+    "question": "Does this education/governance background make you more or less interested in the candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "boe-sally-j-lieber",
+    "office": "Board of Equalization, District 2",
+    "candidate": "Sally J. Lieber",
+    "type": "Ballot designation",
+    "topic": "Tax board background",
+    "statement": "This candidate appears on official materials with the ballot designation “Member, State Board of Equalization.”",
+    "question": "Does this background make you more or less interested in a Board of Equalization candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "boe-john-pimentel",
+    "office": "Board of Equalization, District 2",
+    "candidate": "John Pimentel",
+    "type": "Ballot designation",
+    "topic": "Tax board background",
+    "statement": "This candidate appears on official materials with the ballot designation “Member, Board of Trustees, San Mateo County Community College District.”",
+    "question": "Does this background make you more or less interested in a Board of Equalization candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "boe-j-brett-marymee",
+    "office": "Board of Equalization, District 2",
+    "candidate": "J Brett Marymee",
+    "type": "Ballot designation",
+    "topic": "Tax board background",
+    "statement": "This candidate appears on official materials with the ballot designation “Small Business Owner.”",
+    "question": "Does this background make you more or less interested in a Board of Equalization candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "boe-mark-mccomas",
+    "office": "Board of Equalization, District 2",
+    "candidate": "Mark McComas",
+    "type": "Ballot designation",
+    "topic": "Tax board background",
+    "statement": "This candidate appears on official materials with the ballot designation “Small Business Advocate.”",
+    "question": "Does this background make you more or less interested in a Board of Equalization candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "boe-bill-shireman",
+    "office": "Board of Equalization, District 2",
+    "candidate": "Bill Shireman",
+    "type": "Ballot designation",
+    "topic": "Tax board background",
+    "statement": "This candidate appears on official materials with the ballot designation “Taxpayer Advocate.”",
+    "question": "Does this background make you more or less interested in a Board of Equalization candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "boe-john-w-zaruka",
+    "office": "Board of Equalization, District 2",
+    "candidate": "John W. Zaruka",
+    "type": "Ballot designation",
+    "topic": "Tax board background",
+    "statement": "This candidate appears on official materials with the ballot designation “Retired Hospitality Executive.”",
+    "question": "Does this background make you more or less interested in a Board of Equalization candidate?",
+    "sources": [
+      "sosCert"
+    ]
+  },
+  {
+    "id": "us15-anthony-van-dang",
+    "office": "U.S. Representative, District 15",
+    "candidate": "Anthony Van Dang",
+    "type": "Ballot designation",
+    "topic": "Congressional candidate background",
+    "statement": "This candidate appears on official materials with the ballot designation “Policy Analyst.”",
+    "question": "Does this background make you more or less interested in this congressional candidate?",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "us15-mantosh-kumar",
+    "office": "U.S. Representative, District 15",
+    "candidate": "Mantosh Kumar",
+    "type": "Ballot designation",
+    "topic": "Congressional candidate background",
+    "statement": "This candidate appears on official materials with the ballot designation “Strategic Business Advisor.”",
+    "question": "Does this background make you more or less interested in this congressional candidate?",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "us15-kevin-mullin",
+    "office": "U.S. Representative, District 15",
+    "candidate": "Kevin Mullin",
+    "type": "Ballot designation",
+    "topic": "Congressional candidate background",
+    "statement": "This candidate appears on official materials with the ballot designation “U.S. Representative.”",
+    "question": "Does this background make you more or less interested in this congressional candidate?",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "us15-charles-hoelter",
+    "office": "U.S. Representative, District 15",
+    "candidate": "Charles Hoelter",
+    "type": "Ballot designation",
+    "topic": "Congressional candidate background",
+    "statement": "This candidate appears on official materials with the ballot designation “Retired Training Supervisor.”",
+    "question": "Does this background make you more or less interested in this congressional candidate?",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "us15-jim-garrity",
+    "office": "U.S. Representative, District 15",
+    "candidate": "Jim Garrity",
+    "type": "Ballot designation",
+    "topic": "Congressional candidate background",
+    "statement": "This candidate appears on official materials with the ballot designation “Retired Police Inspector.”",
+    "question": "Does this background make you more or less interested in this congressional candidate?",
+    "sources": [
+      "sosCert",
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "ad21-papan-1",
+    "office": "State Assembly, District 21",
+    "candidate": "Diane Papan",
+    "type": "Record/experience",
+    "topic": "Incumbent Assemblymember",
+    "statement": "The San Mateo County roster lists this candidate as a California State Assemblymember.",
+    "question": "Does incumbent Assembly experience make you more or less interested in this candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "ad21-muhawieh-1",
+    "office": "State Assembly, District 21",
+    "candidate": "Jabra J. Muhawieh",
+    "type": "Record/experience",
+    "topic": "Tax professional background",
+    "statement": "The San Mateo County roster lists this candidate as a licensed tax professional.",
+    "question": "Does tax-professional experience make you more or less interested in this candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-schools-bonini-1",
+    "office": "San Mateo County Superintendent of Schools",
+    "candidate": "Chelsea Bonini",
+    "type": "Record/experience",
+    "topic": "Teacher / attorney / trustee background",
+    "statement": "The San Mateo County roster lists this candidate as a teacher, attorney, and trustee.",
+    "question": "Does this background make you more or less interested in this county schools candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-schools-camacho-1",
+    "office": "San Mateo County Superintendent of Schools",
+    "candidate": "Héctor Camacho Jr.",
+    "type": "Record/experience",
+    "topic": "Teacher / executive director background",
+    "statement": "The San Mateo County roster lists this candidate as a teacher and executive director.",
+    "question": "Does this background make you more or less interested in this county schools candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-d3-jimenez-1",
+    "office": "San Mateo County Board of Supervisors, District 3",
+    "candidate": "Joaquin Jiménez",
+    "type": "Record/experience",
+    "topic": "Community organizer background",
+    "statement": "The San Mateo County roster lists this candidate as a community organizer.",
+    "question": "Does this background make you more or less interested in this supervisor candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-d3-mueller-1",
+    "office": "San Mateo County Board of Supervisors, District 3",
+    "candidate": "Ray Mueller",
+    "type": "Record/experience",
+    "topic": "Incumbency",
+    "statement": "The San Mateo County roster lists this candidate as the incumbent.",
+    "question": "Does incumbency make you more or less interested in this supervisor candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-assessor-canepa-1",
+    "office": "San Mateo County Assessor-County Clerk-Recorder",
+    "candidate": "David Canepa",
+    "type": "Record/experience",
+    "topic": "County supervisor background",
+    "statement": "The San Mateo County roster lists this candidate as a San Mateo County Supervisor.",
+    "question": "Does county-supervisor experience make you more or less interested in this Assessor-Clerk-Recorder candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-assessor-irizarry-1",
+    "office": "San Mateo County Assessor-County Clerk-Recorder",
+    "candidate": "Jim Irizarry",
+    "type": "Record/experience",
+    "topic": "Assistant assessor background",
+    "statement": "The San Mateo County roster lists this candidate as Assistant County Assessor.",
+    "question": "Does direct assessor-office experience make you more or less interested in this candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-controller-raigoza-1",
+    "office": "San Mateo County Controller",
+    "candidate": "Juan Raigoza",
+    "type": "Record/experience",
+    "topic": "Incumbent controller background",
+    "statement": "The San Mateo County roster lists this candidate as San Mateo County Controller.",
+    "question": "Does incumbent Controller experience make you more or less interested in this county candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  },
+  {
+    "id": "smc-controller-morgan-1",
+    "office": "San Mateo County Controller",
+    "candidate": "Thomas Royal Morgan II",
+    "type": "Ballot designation",
+    "topic": "No ballot designation",
+    "statement": "The San Mateo County roster lists this candidate without a ballot designation in the March 2 snapshot.",
+    "question": "How does the lack of a ballot designation affect your interest in researching this candidate?",
+    "sources": [
+      "sanMateoRoster"
+    ]
+  }
+];
+
+const STORAGE_KEY = 'ca_primary_neutral_voter_worksheet_v1';
+let state = loadState();
+let revealedAll = !!state.revealedAll;
+let cardOrder = state.cardOrder && state.cardOrder.length === cards.length ? state.cardOrder : cards.map(c=>c.id);
+
+const pollFilters = {
+  "Governor": {
+    label: "May 4 poll at 1%+",
+    source: "sfgateLatestGovPoll",
+    note: "California Democratic Party poll summarized by SFGATE on May 4, 2026; surveyed 1,200 Californians April 30-May 2.",
+    threshold: 1,
+    candidates: {
+      "Steve Hilton": 18,
+      "Xavier Becerra": 18,
+      "Chad Bianco": 15,
+      "Tom Steyer": 12,
+      "Katie Porter": 9,
+      "Matt Mahan": 7,
+      "Antonio Villaraigosa": 3,
+      "Tony K. Thurmond": 2
+    }
+  },
+  "Lieutenant Governor": {
+    label: "poll/visibility filter",
+    source: "kpbsLtGov",
+    note: "Includes candidates named in public 2026 Lieutenant Governor polling at roughly 2% or higher, plus voter-guide-visible contenders with statewide office or notable endorsements.",
+    threshold: 2,
+    candidates: {
+      "David Fennell": 18,
+      "Fiona Ma": 18,
+      "Gloria Romero": 11,
+      "Michael Tubbs": 5,
+      "Janelle Kellman": 3,
+      "Oliver Ma": 3,
+      "Tim Myers": 3,
+      "Josh Fryday": 2,
+      "Alice Stek": 2
+    }
+  },
+  "Treasurer": {
+    label: "viability filter",
+    source: "sacBeeTreasurer",
+    note: "No clean recent public poll found; filtered to candidates with the strongest visible viability signals: current statewide/state office, major campaign finance, or broad voter-guide/editorial attention.",
+    threshold: 1,
+    candidates: {
+      "Anna M. Caballero": 1,
+      "Eleni Kounalakis": 1,
+      "Tony Vazquez": 1
+    }
+  },
+  "Insurance Commissioner": {
+    label: "voter-guide visibility filter",
+    source: "kqedInsurance",
+    note: "No clean recent public poll found; filtered to candidates identified as notable in voter guides or with meaningful office/issue visibility.",
+    threshold: 1,
+    candidates: {
+      "Ben Allen": 1,
+      "Steven Craig Bradford": 1,
+      "Jane Kim": 1,
+      "Patrick Wolff": 1,
+      "Merritt Farren": 1,
+      "Stacy A. Korsgaden": 1,
+      "Robert P Howell": 1,
+      "Eduardo \"Lalo\" Vargas": 1
+    }
+  },
+  "Superintendent of Public Instruction": {
+    label: "voter-guide visibility filter",
+    source: "kpbsSuperintendent",
+    note: "No clean recent public poll found; filtered to candidates with statewide legislative leadership, major education endorsements, or prominent voter-guide/news coverage.",
+    threshold: 1,
+    candidates: {
+      "Al Muratsuchi": 1,
+      "Josh Newman": 1,
+      "Anthony Rendon": 1,
+      "Sonja Shaw": 1,
+      "Nichelle M. Henderson": 1,
+      "Richard Barrera": 1
+    }
+  },
+  "Board of Equalization, District 2": {
+    label: "local viability filter",
+    source: "sfchronBoe",
+    note: "No poll found; filtered to the incumbent and challengers with the clearest local/party or editorial-coverage viability signals.",
+    threshold: 1,
+    candidates: {
+      "Sally J. Lieber": 1,
+      "John Pimentel": 1,
+      "John W. Zaruka": 1
+    }
+  }
+};
+
+function loadState(){
+  try {
+    return {...{responses:{}, revealed:{}, revealedAll:false, candidateRatings:{}}, ...(JSON.parse(localStorage.getItem(STORAGE_KEY)) || {})};
+  }
+  catch(e){ return {responses:{}, revealed:{}, revealedAll:false, candidateRatings:{}}; }
+}
+function saveState(){
+  state.cardOrder = cardOrder;
+  state.revealedAll = revealedAll;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+function escapeHtml(str=''){
+  return String(str).replace(/[&<>'"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[c]));
+}
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}
+function offices(){ return [...new Set(candidates.map(c=>c.office))]; }
+function sourceLinks(sourceIds){
+  return sourceIds.map(id=>{
+    const s = sources[id];
+    if(!s) return '';
+    return `<li><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a><div class="small">${escapeHtml(s.note)}</div></li>`;
+  }).join('');
+}
+function candidateMask(card){
+  const sameOffice = candidates.filter(c=>c.office===card.office);
+  const idx = sameOffice.findIndex(c=>c.name===card.candidate);
+  const label = String.fromCharCode(65 + (idx >= 0 ? idx % 26 : 0));
+  const suffix = idx >= 26 ? Math.floor(idx/26)+1 : '';
+  return `${card.office} candidate ${label}${suffix}`;
+}
+function isRevealed(card){ return revealedAll || !!state.revealed[card.id]; }
+function getResponse(id){ return state.responses[id] || {}; }
+function setResponse(id, patch){ state.responses[id] = {...getResponse(id), ...patch, updatedAt:new Date().toISOString()}; saveState(); updateStats(); renderNotes(); renderScores(); }
+function typeClass(t){ if(t.includes('Record')) return 'record'; if(t.includes('Endorsement')) return 'support'; if(t.includes('Issue')) return 'issue'; return ''; }
+function cardById(id){ return cards.find(c=>c.id===id); }
+function candidateFor(card){ return candidates.find(c=>c.office===card.office && c.name===card.candidate); }
+function isAnswered(id){ const r=getResponse(id); return !!(r.agreement || r.reaction || (r.notes && r.notes.trim())); }
+function pollInfo(c){ return pollFilters[c.office]?.candidates?.[c.name] ?? null; }
+function isPollFilteredLargeRace(c, mode='main-polled'){
+  const filter = pollFilters[c.office];
+  if(mode !== 'main-polled' || !filter) return true;
+  const pct = pollInfo(c);
+  return pct !== null && pct >= filter.threshold;
+}
+function candidateKey(c){ return `${c.office}|||${c.name}`; }
+function candidateCards(c){ return cards.filter(card=>card.office===c.office && card.candidate===c.name); }
+function getCandidateRating(c){ return state.candidateRatings?.[candidateKey(c)] || {}; }
+function setCandidateRating(c, patch){
+  if(!state.candidateRatings) state.candidateRatings = {};
+  const key = candidateKey(c);
+  state.candidateRatings[key] = {...getCandidateRating(c), ...patch, updatedAt:new Date().toISOString()};
+  saveState(); renderScores();
+}
+function agreementScore(value){
+  return {'Strongly agree':2, 'Agree':1, 'Neutral/unsure':0, 'Disagree':-1, 'Strongly disagree':-2}[value] ?? null;
+}
+function reactionScore(value){
+  return {'More likely to consider':2, 'No effect':0, 'Less likely to consider':-2, 'Unsure':0}[value] ?? null;
+}
+function scaleScore(sum, maxAbs){ return maxAbs ? Math.round(((sum + maxAbs) / (maxAbs * 2)) * 100) : null; }
+function candidateFit(c){
+  const direct = getCandidateRating(c);
+  const directValue = direct.overall ? Number(direct.overall) : null;
+  const directScore = directValue ? Math.round(((directValue - 1) / 4) * 100) : null;
+  let statementSum = 0, statementMax = 0, answeredStatements = 0;
+  candidateCards(c).forEach(card=>{
+    const r = getResponse(card.id);
+    const a = agreementScore(r.agreement);
+    const rx = reactionScore(r.reaction);
+    if(a !== null){ statementSum += a; statementMax += 2; answeredStatements++; }
+    if(rx !== null){ statementSum += rx; statementMax += 2; answeredStatements++; }
+  });
+  const statementScore = scaleScore(statementSum, statementMax);
+  const parts = [directScore, statementScore].filter(v=>v !== null);
+  const score = parts.length ? Math.round(parts.reduce((a,b)=>a+b,0) / parts.length) : null;
+  const possibleInputs = 1 + (candidateCards(c).length * 2);
+  const completedInputs = (directValue ? 1 : 0) + answeredStatements;
+  return {score, directScore, statementScore, directValue, answeredStatements, completedInputs, possibleInputs, cardCount:candidateCards(c).length, note:direct.note || ''};
+}
+
+function fillFilters(){
+  const officeSelects = [document.getElementById('officeFilter'), document.getElementById('candidateOfficeFilter'), document.getElementById('scoreOfficeFilter')];
+  for(const sel of officeSelects){
+    const current = sel.value;
+    offices().forEach(o=>{ const opt=document.createElement('option'); opt.value=o; opt.textContent=o; sel.appendChild(opt); });
+    sel.value=current;
+  }
+}
+function renderStats(){
+  const total=cards.length;
+  const answered=cards.filter(c=>isAnswered(c.id)).length;
+  const revealed=cards.filter(c=>isRevealed(c)).length;
+  const officesCount=offices().length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><strong>${total}</strong><span>survey cards</span></div>
+    <div class="stat"><strong>${answered}</strong><span>answered</span></div>
+    <div class="stat"><strong>${revealed}</strong><span>identities revealed</span></div>
+    <div class="stat"><strong>${officesCount}</strong><span>offices listed</span></div>`;
+}
+function renderScoreStats(){
+  const fits = candidates.map(candidateFit);
+  const rated = fits.filter(f=>f.score !== null).length;
+  const direct = fits.filter(f=>f.directValue).length;
+  const answered = fits.reduce((sum, f)=>sum + f.answeredStatements, 0);
+  const avg = rated ? Math.round(fits.filter(f=>f.score !== null).reduce((sum, f)=>sum + f.score, 0) / rated) : '—';
+  document.getElementById('scoreStats').innerHTML = `
+    <div class="stat"><strong>${rated}</strong><span>candidates with fit scores</span></div>
+    <div class="stat"><strong>${direct}</strong><span>direct impressions</span></div>
+    <div class="stat"><strong>${answered}</strong><span>statement ratings</span></div>
+    <div class="stat"><strong>${avg}</strong><span>average scored fit</span></div>`;
+}
+function updateStats(){ renderStats(); renderNoteStats(); renderScoreStats(); }
+
+function filteredCards(){
+  const q = document.getElementById('search')?.value.trim().toLowerCase() || '';
+  const office = document.getElementById('officeFilter')?.value || '';
+  const type = document.getElementById('typeFilter')?.value || '';
+  const status = document.getElementById('statusFilter')?.value || '';
+  return cardOrder.map(cardById).filter(Boolean).filter(card=>{
+    const revealed = isRevealed(card);
+    const cand = candidateFor(card);
+    const hay = [card.office, card.type, card.topic, card.statement, card.question, revealed ? card.candidate : candidateMask(card), cand?.party, cand?.designation].join(' ').toLowerCase();
+    if(q && !hay.includes(q)) return false;
+    if(office && card.office !== office) return false;
+    if(type && card.type !== type) return false;
+    if(status === 'answered' && !isAnswered(card.id)) return false;
+    if(status === 'unanswered' && isAnswered(card.id)) return false;
+    if(status === 'revealed' && !revealed) return false;
+    if(status === 'masked' && revealed) return false;
+    return true;
+  });
+}
+function renderCards(){
+  renderStats();
+  const container=document.getElementById('cards');
+  const list=filteredCards();
+  if(!list.length){ container.innerHTML='<div class="empty">No cards match these filters.</div>'; return; }
+  container.innerHTML = list.map(card=>renderCard(card)).join('');
+  bindCardInputs(container);
+}
+function renderCard(card){
+  const r=getResponse(card.id);
+  const revealed = isRevealed(card);
+  const cand = candidateFor(card) || {};
+  const sourceSnippet = revealed ? `<div class="sourcebox"><strong>Sources to check:</strong><ul>${sourceLinks(card.sources)}</ul></div>` : `<div class="sourcebox"><strong>Source type:</strong> ${card.sources.map(id=>escapeHtml(sources[id]?.name.replace(/—.*/, '').trim() || id)).join('; ')}. Source links are shown after reveal.</div>`;
+  const identity = revealed ? `<div class="candidate-mask">${escapeHtml(card.candidate)}</div><div class="small">${escapeHtml(cand.party || '')}${cand.party?' · ':''}${escapeHtml(cand.designation || '')}${cand.scope?' · '+escapeHtml(cand.scope):''}</div>` : `<div class="candidate-mask">${escapeHtml(candidateMask(card))}</div><div class="small">Identity masked · ${escapeHtml(card.office)}</div>`;
+  return `<article class="card" data-card-id="${escapeHtml(card.id)}">
+    <div class="card-top">
+      <div>
+        ${identity}
+        <div class="meta"><span class="tag office">${escapeHtml(card.office)}</span><span class="tag ${typeClass(card.type)}">${escapeHtml(card.type)}</span><span class="tag">${escapeHtml(card.topic)}</span></div>
+      </div>
+      <button class="reveal-one reveal" data-reveal="${escapeHtml(card.id)}">${revealed?'Hide this identity':'Reveal identity'}</button>
+    </div>
+    <p><strong>Statement:</strong> ${escapeHtml(card.statement)}</p>
+    <p class="question">${escapeHtml(card.question)}</p>
+    <div class="answergrid">
+      <div>
+        <label class="small"><strong>Agreement with the statement or policy direction</strong></label>
+        <div class="radio-group" role="radiogroup" aria-label="Agreement">
+          ${radio(card.id,'agreement','Strongly agree',r.agreement)}
+          ${radio(card.id,'agreement','Agree',r.agreement)}
+          ${radio(card.id,'agreement','Neutral/unsure',r.agreement)}
+          ${radio(card.id,'agreement','Disagree',r.agreement)}
+          ${radio(card.id,'agreement','Strongly disagree',r.agreement)}
+        </div>
+      </div>
+      <div>
+        <label class="small"><strong>Your own voting-interest reaction</strong></label>
+        <div class="radio-group" role="radiogroup" aria-label="Voting interest reaction">
+          ${radio(card.id,'reaction','More likely to consider',r.reaction)}
+          ${radio(card.id,'reaction','No effect',r.reaction)}
+          ${radio(card.id,'reaction','Less likely to consider',r.reaction)}
+          ${radio(card.id,'reaction','Unsure',r.reaction)}
+        </div>
+      </div>
+    </div>
+    <label class="small"><strong>Notes / questions to verify</strong>
+      <textarea data-notes="${escapeHtml(card.id)}" placeholder="Write what you want to verify or ask about this candidate…">${escapeHtml(r.notes || '')}</textarea>
+    </label>
+    ${sourceSnippet}
+  </article>`;
+}
+function radio(id, field, value, selected){
+  const checked = selected === value ? 'checked' : '';
+  return `<label class="radio"><input type="radio" name="${escapeHtml(field+'-'+id)}" value="${escapeHtml(value)}" data-field="${escapeHtml(field)}" data-card="${escapeHtml(id)}" ${checked}><span>${escapeHtml(value)}</span></label>`;
+}
+function bindCardInputs(container){
+  container.querySelectorAll('input[type="radio"]').forEach(input=>{
+    input.addEventListener('change', e=>setResponse(e.target.dataset.card, {[e.target.dataset.field]:e.target.value}));
+  });
+  container.querySelectorAll('textarea[data-notes]').forEach(t=>{
+    t.addEventListener('input', e=>setResponse(e.target.dataset.notes, {notes:e.target.value}));
+  });
+  container.querySelectorAll('button[data-reveal]').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      const id=e.target.dataset.reveal;
+      state.revealed[id] = !state.revealed[id];
+      saveState(); renderCards(); renderNotes();
+    });
+  });
+}
+
+function fitLabel(score){
+  if(score === null) return 'Unrated';
+  if(score >= 80) return 'Strong fit so far';
+  if(score >= 65) return 'Positive fit so far';
+  if(score >= 45) return 'Mixed or unsure';
+  if(score >= 30) return 'Low fit so far';
+  return 'Very low fit so far';
+}
+function candidateSummary(c){
+  const linkedCards = candidateCards(c);
+  if(linkedCards.length){
+    const items = linkedCards.slice(0, 4).map(card=>`<li><strong>${escapeHtml(card.topic)}:</strong> ${escapeHtml(card.statement)}</li>`).join('');
+    const more = linkedCards.length > 4 ? `<li>${linkedCards.length - 4} more statement card${linkedCards.length - 4 === 1 ? '' : 's'} in the survey.</li>` : '';
+    return `<ul class="mini-list">${items}${more}</ul>`;
+  }
+  return `<p class="small">No expanded statement card is included yet. The recorded detail for this candidate is the official ballot designation: ${escapeHtml(c.designation || 'No ballot designation recorded')}.</p>`;
+}
+function candidateScoreBlock(c){
+  const fit = candidateFit(c);
+  const width = fit.score === null ? 0 : fit.score;
+  const scoreText = fit.score === null ? '—' : `${fit.score}`;
+  return `<div class="scoreline"><span class="scorebig">${scoreText}</span><span>${escapeHtml(fitLabel(fit.score))}</span><span class="small">${fit.completedInputs}/${fit.possibleInputs} rating inputs filled</span></div><div class="scorebar" aria-label="Fit score"><span style="width:${width}%"></span></div>`;
+}
+function candidatePollBlock(c){
+  const pct = pollInfo(c);
+  const filter = pollFilters[c.office];
+  if(pct === null || !filter) return '';
+  const source = sources[filter.source];
+  const isNumericPoll = filter.label.toLowerCase().includes('poll') && pct > 1;
+  const heading = isNumericPoll ? `${pct}% in ${filter.label}` : filter.label;
+  return `<div class="pollnote"><strong>${escapeHtml(heading)}</strong><div>${escapeHtml(filter.note)} ${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">Source</a>` : ''}</div></div>`;
+}
+function candidateRatingControls(c){
+  const rating = getCandidateRating(c);
+  const key = escapeHtml(candidateKey(c));
+  const options = [
+    ['1','Strong no'],
+    ['2','Lean no'],
+    ['3','Unsure'],
+    ['4','Lean yes'],
+    ['5','Strong yes']
+  ].map(([value,label])=>`<label class="radio"><input type="radio" name="overall-${key}" value="${value}" data-candidate-key="${key}" ${rating.overall === value ? 'checked' : ''}><span>${label}</span></label>`).join('');
+  return `<div class="candidate-actions">
+    <div>
+      <label class="small"><strong>Overall impression</strong></label>
+      <div class="radio-group">${options}</div>
+    </div>
+    <label class="small"><strong>Candidate-level note</strong>
+      <textarea data-candidate-note="${key}" placeholder="Optional overall note for this candidate…">${escapeHtml(rating.note || '')}</textarea>
+    </label>
+  </div>`;
+}
+function bindCandidateInputs(container){
+  container.querySelectorAll('input[data-candidate-key]').forEach(input=>{
+    input.addEventListener('change', e=>{
+      const [office, name] = e.target.dataset.candidateKey.split('|||');
+      const c = candidates.find(candidate=>candidate.office===office && candidate.name===name);
+      if(c) setCandidateRating(c, {overall:e.target.value});
+    });
+  });
+  container.querySelectorAll('textarea[data-candidate-note]').forEach(t=>{
+    t.addEventListener('input', e=>{
+      const [office, name] = e.target.dataset.candidateNote.split('|||');
+      const c = candidates.find(candidate=>candidate.office===office && candidate.name===name);
+      if(c) setCandidateRating(c, {note:e.target.value});
+    });
+  });
+}
+
+function renderCandidates(){
+  const container = document.getElementById('candidateList');
+  const q = (document.getElementById('candidateSearch')?.value || '').trim().toLowerCase();
+  const officeFilter = document.getElementById('candidateOfficeFilter')?.value || '';
+  const scopeFilter = document.getElementById('candidateScopeFilter')?.value || 'main-polled';
+  const grouped = new Map();
+  candidates.filter(c=>{
+    const hay=[c.office,c.name,c.party,c.designation,c.scope].join(' ').toLowerCase();
+    if(q && !hay.includes(q)) return false;
+    if(officeFilter && c.office !== officeFilter) return false;
+    if(!isPollFilteredLargeRace(c, scopeFilter)) return false;
+    return true;
+  }).forEach(c=>{ if(!grouped.has(c.office)) grouped.set(c.office,[]); grouped.get(c.office).push(c); });
+  if(!grouped.size){ container.innerHTML='<div class="empty">No candidates match these filters.</div>'; return; }
+  let html='';
+  for(const [office, list] of grouped){
+    html += `<h2 class="office-title">${escapeHtml(office)}</h2>`;
+    for(const c of list){
+      const pollSource = pollFilters[c.office]?.source;
+      const sourceIds = pollSource && pollInfo(c) !== null ? [...new Set([...c.sources, pollSource])] : c.sources;
+      html += `<div class="candidate-card"><div><strong>${escapeHtml(c.name)}</strong><div class="small">${escapeHtml(c.party)}${c.party?' · ':''}${escapeHtml(c.scope)}</div>${candidateScoreBlock(c)}${candidatePollBlock(c)}</div><div><div><strong>${escapeHtml(c.designation || 'No designation recorded in this starter file')}</strong></div>${candidateSummary(c)}${candidateRatingControls(c)}<details><summary>Sources</summary><ul>${sourceLinks(sourceIds)}</ul></details></div></div>`;
+    }
+  }
+  container.innerHTML=html;
+  bindCandidateInputs(container);
+}
+function renderSourceList(){
+  document.getElementById('sourceList').innerHTML = Object.entries(sources).map(([id,s])=>`<li><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a><div class="small">${escapeHtml(s.note)}</div></li>`).join('');
+}
+function filteredScoreCandidates(){
+  const q = (document.getElementById('scoreSearch')?.value || '').trim().toLowerCase();
+  const officeFilter = document.getElementById('scoreOfficeFilter')?.value || '';
+  const coverage = document.getElementById('scoreCoverageFilter')?.value || '';
+  const sort = document.getElementById('scoreSort')?.value || 'score';
+  let list = candidates.map(c=>({candidate:c, fit:candidateFit(c)})).filter(({candidate:c, fit})=>{
+    const hay=[c.office,c.name,c.party,c.designation,c.scope,fitLabel(fit.score)].join(' ').toLowerCase();
+    if(q && !hay.includes(q)) return false;
+    if(officeFilter && c.office !== officeFilter) return false;
+    if(coverage === 'rated' && fit.score === null) return false;
+    if(coverage === 'unrated' && fit.score !== null) return false;
+    return true;
+  });
+  list.sort((a,b)=>{
+    if(sort === 'name') return a.candidate.name.localeCompare(b.candidate.name);
+    if(sort === 'office') return a.candidate.office.localeCompare(b.candidate.office) || (b.fit.score ?? -1) - (a.fit.score ?? -1);
+    if(sort === 'coverage') return b.fit.completedInputs - a.fit.completedInputs || (b.fit.score ?? -1) - (a.fit.score ?? -1);
+    return (b.fit.score ?? -1) - (a.fit.score ?? -1) || a.candidate.office.localeCompare(b.candidate.office);
+  });
+  return list;
+}
+function renderScores(){
+  const container = document.getElementById('scoreList');
+  if(!container) return;
+  renderScoreStats();
+  const list = filteredScoreCandidates();
+  if(!list.length){ container.innerHTML='<div class="empty">No candidates match these score filters.</div>'; return; }
+  let html='';
+  let currentOffice='';
+  for(const {candidate:c, fit} of list){
+    if((document.getElementById('scoreSort')?.value || 'score') !== 'score' && c.office !== currentOffice){
+      currentOffice = c.office;
+      html += `<h2 class="office-title">${escapeHtml(currentOffice)}</h2>`;
+    }
+    const direct = fit.directScore === null ? 'Not rated directly' : `${fit.directScore}/100 from your 1-5 impression`;
+    const statements = fit.statementScore === null ? 'No statement-card ratings yet' : `${fit.statementScore}/100 from blinded-card responses`;
+    html += `<div class="candidate-card"><div><strong>${escapeHtml(c.name)}</strong><div class="small">${escapeHtml(c.office)}</div><div class="small">${escapeHtml(c.party)}${c.party?' · ':''}${escapeHtml(c.designation || '')}</div></div><div>${candidateScoreBlock(c)}<p class="small">${escapeHtml(direct)} · ${escapeHtml(statements)}</p>${fit.note ? `<p>${escapeHtml(fit.note)}</p>` : ''}${candidateRatingControls(c)}</div></div>`;
+  }
+  container.innerHTML=html;
+  bindCandidateInputs(container);
+}
+function renderNoteStats(){
+  const answered=cards.filter(c=>isAnswered(c.id)).length;
+  const withNotes=cards.filter(c=>(getResponse(c.id).notes||'').trim()).length;
+  const revealed=cards.filter(c=>isRevealed(c)).length;
+  document.getElementById('noteStats').innerHTML = `<div class="stat"><strong>${answered}</strong><span>cards with responses</span></div><div class="stat"><strong>${withNotes}</strong><span>cards with notes</span></div><div class="stat"><strong>${revealed}</strong><span>revealed cards</span></div>`;
+}
+function renderNotes(){
+  renderNoteStats();
+  const answeredCards = cards.filter(c=>isAnswered(c.id));
+  const container=document.getElementById('notesList');
+  if(!answeredCards.length){ container.innerHTML='<div class="empty">No responses yet. Fill out survey cards to see your notes here.</div>'; return; }
+  const grouped = new Map();
+  answeredCards.forEach(card=>{
+    const key = `${card.office}|||${isRevealed(card)?card.candidate:candidateMask(card)}`;
+    if(!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(card);
+  });
+  let html='';
+  for(const [key, list] of grouped){
+    const [office, name] = key.split('|||');
+    const revealed = !name.includes(' candidate ');
+    const cand = revealed ? candidates.find(c=>c.office===office && c.name===name) : null;
+    html += `<details open><summary>${escapeHtml(office)} — ${escapeHtml(name)}</summary>`;
+    if(cand) html += `<p class="small">${escapeHtml(cand.party)}${cand.party?' · ':''}${escapeHtml(cand.designation || '')}</p>`;
+    html += `<table><thead><tr><th>Card</th><th>Agreement</th><th>Reaction</th><th>Notes</th></tr></thead><tbody>`;
+    list.forEach(card=>{ const r=getResponse(card.id); html += `<tr><td>${escapeHtml(card.topic)}<div class="small">${escapeHtml(card.type)}</div></td><td>${escapeHtml(r.agreement || '')}</td><td>${escapeHtml(r.reaction || '')}</td><td>${escapeHtml(r.notes || '')}</td></tr>`; });
+    html += `</tbody></table></details>`;
+  }
+  container.innerHTML=html;
+}
+function exportRows(){
+  return cards.map(card=>{
+    const r=getResponse(card.id); const cand=candidateFor(card)||{};
+    const fit = cand.name ? candidateFit(cand) : {};
+    const candidateRating = cand.name ? getCandidateRating(cand) : {};
+    return {card_id:card.id, office:card.office, candidate:card.candidate, masked_label:candidateMask(card), party:cand.party||'', designation:cand.designation||'', candidate_fit_score:fit.score ?? '', candidate_direct_rating:candidateRating.overall || '', candidate_direct_note:candidateRating.note || '', type:card.type, topic:card.topic, statement:card.statement, question:card.question, agreement:r.agreement||'', reaction:r.reaction||'', notes:r.notes||'', sources:card.sources.map(id=>sources[id]?.name || id).join('; '), source_urls:card.sources.map(id=>sources[id]?.url || '').join('; ')};
+  });
+}
+function download(filename, text, type='text/plain'){
+  const blob = new Blob([text], {type});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download=filename; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+}
+function toCsv(rows){
+  const headers=Object.keys(rows[0]);
+  const quote=v=>'"'+String(v ?? '').replace(/"/g,'""')+'"';
+  return headers.map(quote).join(',')+'\n'+rows.map(row=>headers.map(h=>quote(row[h])).join(',')).join('\n');
+}
+function shuffle(array){
+  const a=[...array];
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function bindGlobal(){
+  document.querySelectorAll('[data-tab-button]').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-tab-button]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById('tab-'+btn.dataset.tabButton).classList.add('active');
+    if(btn.dataset.tabButton==='candidates') renderCandidates();
+    if(btn.dataset.tabButton==='scores') renderScores();
+    if(btn.dataset.tabButton==='notes') renderNotes();
+  }));
+  ['search','officeFilter','typeFilter','statusFilter'].forEach(id=>document.getElementById(id).addEventListener('input',renderCards));
+  ['candidateSearch','candidateOfficeFilter','candidateScopeFilter'].forEach(id=>document.getElementById(id).addEventListener('input',renderCandidates));
+  ['scoreSearch','scoreOfficeFilter','scoreCoverageFilter','scoreSort'].forEach(id=>document.getElementById(id).addEventListener('input',renderScores));
+  document.getElementById('revealAll').addEventListener('click',()=>{
+    revealedAll=!revealedAll; saveState();
+    document.getElementById('revealAll').textContent = revealedAll ? 'Mask all identities' : 'Reveal all identities';
+    renderCards(); renderNotes();
+  });
+  document.getElementById('shuffleCards').addEventListener('click',()=>{ cardOrder=shuffle(cards.map(c=>c.id)); saveState(); renderCards(); });
+  document.getElementById('exportCsv').addEventListener('click',()=>download('ca-primary-voter-worksheet-responses.csv', toCsv(exportRows()), 'text/csv'));
+  document.getElementById('exportJson').addEventListener('click',()=>download('ca-primary-voter-worksheet-responses.json', JSON.stringify({exportedAt:new Date().toISOString(), responses:exportRows()}, null, 2), 'application/json'));
+  document.getElementById('clearAll').addEventListener('click',()=>{
+    if(confirm('Clear all saved responses and reveal settings in this browser?')){ state={responses:{}, revealed:{}, revealedAll:false, candidateRatings:{}}; revealedAll=false; cardOrder=cards.map(c=>c.id); saveState(); document.getElementById('revealAll').textContent='Reveal all identities'; renderCards(); renderCandidates(); renderScores(); renderNotes(); }
+  });
+}
+
+fillFilters();
+document.getElementById('revealAll').textContent = revealedAll ? 'Mask all identities' : 'Reveal all identities';
+bindGlobal();
+renderCards();
+renderCandidates();
+renderScores();
+renderNotes();
+renderSourceList();
+</script>
+</body>
+</html>

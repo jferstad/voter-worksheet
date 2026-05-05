@@ -2828,16 +2828,16 @@ function fillFilters(){
     sel.value=current;
   }
 }
-function renderStats(){
-  const total=cards.length;
-  const answered=cards.filter(c=>isAnswered(c.id)).length;
-  const revealed=cards.filter(c=>isRevealed(c)).length;
-  const officesCount=offices().length;
+function renderStats(list=filteredCards()){
+  const total=list.length;
+  const answered=list.filter(c=>isAnswered(c.id)).length;
+  const revealed=list.filter(c=>isRevealed(c)).length;
+  const officesCount=[...new Set(list.map(c=>c.office))].length;
   document.getElementById('stats').innerHTML = `
-    <div class="stat"><strong>${total}</strong><span>survey cards</span></div>
-    <div class="stat"><strong>${answered}</strong><span>answered</span></div>
-    <div class="stat"><strong>${revealed}</strong><span>identities revealed</span></div>
-    <div class="stat"><strong>${officesCount}</strong><span>offices listed</span></div>`;
+    <div class="stat"><strong>${total}</strong><span>visible cards</span></div>
+    <div class="stat"><strong>${answered}</strong><span>visible answered</span></div>
+    <div class="stat"><strong>${revealed}</strong><span>visible identities revealed</span></div>
+    <div class="stat"><strong>${officesCount}</strong><span>visible offices</span></div>`;
 }
 function renderScoreStats(){
   const fits = candidates.map(candidateFit);
@@ -2875,9 +2875,9 @@ function filteredCards(){
   });
 }
 function renderCards(){
-  renderStats();
   const container=document.getElementById('cards');
   const list=filteredCards();
+  renderStats(list);
   if(!list.length){ container.innerHTML='<div class="empty">No cards match these filters.</div>'; return; }
   container.innerHTML = list.map(card=>renderCard(card)).join('');
   bindCardInputs(container);

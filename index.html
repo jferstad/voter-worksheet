@@ -131,7 +131,7 @@
   <section id="tab-survey" class="tab active">
     <div class="panel">
       <h2>Blinded survey cards</h2>
-      <p class="muted">Candidate names stay masked in this section until you reveal them. You can rate agreement with the statement, record whether it makes you more or less likely to consider the candidate, and add notes. The fit tab summarizes only your own ratings.</p>
+      <p class="muted">Candidate names stay masked in this section until you reveal them. You can rate agreement with the statement, set how important that statement is to you, and add notes. The fit tab summarizes only your own ratings.</p>
       <div class="filters" aria-label="Filter survey cards" style="grid-template-columns:1.2fr .85fr .85fr .85fr .85fr">
         <label>Search cards
           <input type="search" id="search" placeholder="Search offices, issues, statement text, source notes…" />
@@ -177,7 +177,7 @@
   <section id="tab-scores" class="tab">
     <div class="panel">
       <h2>Candidate fit scores</h2>
-      <p class="muted">These scores are a worksheet summary of your own inputs: direct 1-5 impressions plus any blinded-card agreement/reaction ratings. They are not predictions, endorsements, or recommendations.</p>
+      <p class="muted">These scores are a worksheet summary of your own inputs: direct 1-5 impressions plus blinded-card agreement ratings weighted by your 0-4 importance choices. They are not predictions, endorsements, or recommendations.</p>
       <div class="filters" style="grid-template-columns:1fr .9fr .9fr .9fr">
         <label>Search scores
           <input type="search" id="scoreSearch" placeholder="Search name, office, party, designation…" />
@@ -2939,7 +2939,7 @@ function setResponse(id, patch){ state.responses[id] = {...getResponse(id), ...p
 function typeClass(t){ if(t.includes('Record')) return 'record'; if(t.includes('Endorsement')) return 'support'; if(t.includes('Issue')) return 'issue'; return ''; }
 function cardById(id){ return cards.find(c=>c.id===id); }
 function candidateFor(card){ return candidates.find(c=>c.office===card.office && c.name===card.candidate); }
-function isAnswered(id){ const r=getResponse(id); return !!(r.agreement || r.reaction || (r.notes && r.notes.trim())); }
+function isAnswered(id){ const r=getResponse(id); return !!(r.agreement || r.importance || (r.notes && r.notes.trim())); }
 function pollInfo(c){ return pollFilters[c.office]?.candidates?.[c.name] ?? null; }
 function isPollFilteredLargeRace(c, mode='main-polled'){
   const filter = pollFilters[c.office];
@@ -2959,8 +2959,8 @@ function setCandidateRating(c, patch){
 function agreementScore(value){
   return {'Strongly agree':2, 'Agree':1, 'Neutral/unsure':0, 'Disagree':-1, 'Strongly disagree':-2}[value] ?? null;
 }
-function reactionScore(value){
-  return {'More likely to consider':2, 'No effect':0, 'Less likely to consider':-2, 'Unsure':0}[value] ?? null;
+function importanceWeight(value){
+  return {'0 - ignore':0, '1 - low':1, '2 - medium':2, '3 - high':3, '4 - decisive':4}[value] ?? null;
 }
 function scaleScore(sum, maxAbs){ return maxAbs ? Math.round(((sum + maxAbs) / (maxAbs * 2)) * 100) : null; }
 function candidateFit(c){
@@ -2971,9 +2971,13 @@ function candidateFit(c){
   candidateCards(c).forEach(card=>{
     const r = getResponse(card.id);
     const a = agreementScore(r.agreement);
-    const rx = reactionScore(r.reaction);
-    if(a !== null){ statementSum += a; statementMax += 2; answeredStatements++; }
-    if(rx !== null){ statementSum += rx; statementMax += 2; answeredStatements++; }
+    const weightInput = importanceWeight(r.importance);
+    const weight = weightInput !== null ? weightInput : 2;
+    if(a !== null){
+      if(weight > 0){ statementSum += a * weight; statementMax += 2 * weight; }
+      answeredStatements++;
+    }
+    if(weightInput !== null){ answeredStatements++; }
   });
   const statementScore = scaleScore(statementSum, statementMax);
   const parts = [directScore, statementScore].filter(v=>v !== null);
@@ -3060,7 +3064,6 @@ function renderCard(card){
       <button class="reveal-one reveal" data-reveal="${escapeHtml(card.id)}">${revealed?'Hide this identity':'Reveal identity'}</button>
     </div>
     <p><strong>Statement:</strong> ${escapeHtml(card.statement)}</p>
-    <p class="question">${escapeHtml(card.question)}</p>
     <div class="answergrid">
       <div>
         <label class="small"><strong>Agreement with the statement or policy direction</strong></label>
@@ -3073,12 +3076,13 @@ function renderCard(card){
         </div>
       </div>
       <div>
-        <label class="small"><strong>Your own voting-interest reaction</strong></label>
-        <div class="radio-group" role="radiogroup" aria-label="Voting interest reaction">
-          ${radio(card.id,'reaction','More likely to consider',r.reaction)}
-          ${radio(card.id,'reaction','No effect',r.reaction)}
-          ${radio(card.id,'reaction','Less likely to consider',r.reaction)}
-          ${radio(card.id,'reaction','Unsure',r.reaction)}
+        <label class="small"><strong>Importance to your decision</strong></label>
+        <div class="radio-group" role="radiogroup" aria-label="Importance to your decision">
+          ${radio(card.id,'importance','0 - ignore',r.importance)}
+          ${radio(card.id,'importance','1 - low',r.importance)}
+          ${radio(card.id,'importance','2 - medium',r.importance)}
+          ${radio(card.id,'importance','3 - high',r.importance)}
+          ${radio(card.id,'importance','4 - decisive',r.importance)}
         </div>
       </div>
     </div>
@@ -3241,7 +3245,7 @@ function renderScores(){
       html += `<h2 class="office-title">${escapeHtml(currentOffice)}</h2>`;
     }
     const direct = fit.directScore === null ? 'Not rated directly' : `${fit.directScore}/100 from your 1-5 impression`;
-    const statements = fit.statementScore === null ? 'No statement-card ratings yet' : `${fit.statementScore}/100 from blinded-card responses`;
+    const statements = fit.statementScore === null ? 'No statement-card ratings yet' : `${fit.statementScore}/100 from blinded-card agreement weighted by importance`;
     html += `<div class="candidate-card"><div><strong>${escapeHtml(c.name)}</strong><div class="small">${escapeHtml(c.office)}</div><div class="small">${escapeHtml(c.party)}${c.party?' · ':''}${escapeHtml(c.designation || '')}</div></div><div>${candidateScoreBlock(c)}<p class="small">${escapeHtml(direct)} · ${escapeHtml(statements)}</p>${fit.note ? `<p>${escapeHtml(fit.note)}</p>` : ''}${candidateRatingControls(c)}</div></div>`;
   }
   container.innerHTML=html;
@@ -3271,8 +3275,8 @@ function renderNotes(){
     const cand = revealed ? candidates.find(c=>c.office===office && c.name===name) : null;
     html += `<details open><summary>${escapeHtml(office)} — ${escapeHtml(name)}</summary>`;
     if(cand) html += `<p class="small">${escapeHtml(cand.party)}${cand.party?' · ':''}${escapeHtml(cand.designation || '')}</p>`;
-    html += `<table><thead><tr><th>Card</th><th>Agreement</th><th>Reaction</th><th>Notes</th></tr></thead><tbody>`;
-    list.forEach(card=>{ const r=getResponse(card.id); html += `<tr><td>${escapeHtml(card.topic)}<div class="small">${escapeHtml(card.type)}</div></td><td>${escapeHtml(r.agreement || '')}</td><td>${escapeHtml(r.reaction || '')}</td><td>${escapeHtml(r.notes || '')}</td></tr>`; });
+    html += `<table><thead><tr><th>Card</th><th>Agreement</th><th>Importance</th><th>Notes</th></tr></thead><tbody>`;
+    list.forEach(card=>{ const r=getResponse(card.id); html += `<tr><td>${escapeHtml(card.topic)}<div class="small">${escapeHtml(card.type)}</div></td><td>${escapeHtml(r.agreement || '')}</td><td>${escapeHtml(r.importance || '')}</td><td>${escapeHtml(r.notes || '')}</td></tr>`; });
     html += `</tbody></table></details>`;
   }
   container.innerHTML=html;
@@ -3282,7 +3286,7 @@ function exportRows(){
     const r=getResponse(card.id); const cand=candidateFor(card)||{};
     const fit = cand.name ? candidateFit(cand) : {};
     const candidateRating = cand.name ? getCandidateRating(cand) : {};
-    return {card_id:card.id, office:card.office, candidate:card.candidate, masked_label:candidateMask(card), party:cand.party||'', designation:cand.designation||'', candidate_fit_score:fit.score ?? '', candidate_direct_rating:candidateRating.overall || '', candidate_direct_note:candidateRating.note || '', type:card.type, topic:card.topic, statement:card.statement, question:card.question, agreement:r.agreement||'', reaction:r.reaction||'', notes:r.notes||'', sources:card.sources.map(id=>sources[id]?.name || id).join('; '), source_urls:card.sources.map(id=>sources[id]?.url || '').join('; ')};
+    return {card_id:card.id, office:card.office, candidate:card.candidate, masked_label:candidateMask(card), party:cand.party||'', designation:cand.designation||'', candidate_fit_score:fit.score ?? '', candidate_direct_rating:candidateRating.overall || '', candidate_direct_note:candidateRating.note || '', type:card.type, topic:card.topic, statement:card.statement, question:card.question, agreement:r.agreement||'', importance:r.importance||'', notes:r.notes||'', sources:card.sources.map(id=>sources[id]?.name || id).join('; '), source_urls:card.sources.map(id=>sources[id]?.url || '').join('; ')};
   });
 }
 function download(filename, text, type='text/plain'){

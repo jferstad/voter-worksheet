@@ -122,7 +122,7 @@
   <section id="tab-survey" class="tab active">
     <div class="panel">
       <h2>Blinded survey cards</h2>
-      <p class="muted">Candidate names stay masked in this section until you reveal them. You can rate agreement with the statement, set how important that statement is to you, and add notes. The fit tab summarizes only your own ratings.</p>
+      <p class="muted">Candidate names stay masked in this section until you reveal them. These cards now exclude bare poll numbers, ballot designations, party labels, and resume-only details. You can rate agreement with each action or policy direction, set how important it is to you, and add notes.</p>
       <div class="filters" aria-label="Filter survey cards" style="grid-template-columns:1.2fr .85fr .85fr .85fr .85fr">
         <label>Search cards
           <input type="search" id="search" placeholder="Search offices, issues, statement text, source notes…" />
@@ -134,7 +134,7 @@
           <select id="surveyScopeFilter"><option value="main-polled">Main candidates filter</option><option value="all">Show all card candidates</option></select>
         </label>
         <label>Card type
-          <select id="typeFilter"><option value="">All types</option><option value="Issue/position">Issue/position</option><option value="Record/experience">Record/experience</option><option value="Endorsement/support">Endorsement/support</option><option value="Ballot designation">Ballot designation</option></select>
+          <select id="typeFilter"><option value="">All types</option><option value="Issue/position">Issue/position</option><option value="Record/experience">Record/experience</option><option value="Endorsement/support">Endorsement/support</option></select>
         </label>
         <label>Status
           <select id="statusFilter"><option value="">All statuses</option><option value="answered">Answered</option><option value="unanswered">Unanswered</option><option value="revealed">Revealed</option><option value="masked">Still masked</option></select>
@@ -2650,7 +2650,7 @@ const supplementalCards = [
   {id:'gov-villaraigosa-homebuyer-immigration', office:'Governor', candidate:'Antonio Villaraigosa', type:'Issue/position', topic:'Housing and immigration enforcement', statement:'KQED summarizes this candidate as promising to expand homebuyer assistance and create a task force to ensure federal immigration agents follow state law.', question:'How do you react to pairing homebuyer help with state oversight of federal immigration enforcement?', sources:['kqedGov']},
   {id:'gov-thurmond-wealth-tax-education', office:'Governor', candidate:'Tony K. Thurmond', type:'Issue/position', topic:'Wealth tax and student supports', statement:'KQED summarizes this candidate as supporting a California billionaire tax and promising more funding for dyslexia screening and tutoring.', question:'Does this education-centered tax-and-services agenda make you more or less interested?', sources:['kqedGov']},
 
-  {id:'ltgov-fennell-audit-waste', office:'Lieutenant Governor', candidate:'David Fennell', type:'Issue/position', topic:'Audits and waste', statement:'In his official candidate statement, this Republican businessman emphasizes audits, waste, fraud, and accountability in state government.', question:'Does a waste-and-audits pitch make you more interested in a Lieutenant Governor candidate?', sources:['sosLtGov']},
+  {id:'ltgov-fennell-audit-waste', office:'Lieutenant Governor', candidate:'David Fennell', type:'Issue/position', topic:'Audits and waste', statement:'In his official candidate statement, this candidate emphasizes audits, waste, fraud, and accountability in state government.', question:'Does a waste-and-audits pitch make you more interested in a Lieutenant Governor candidate?', sources:['sosLtGov']},
   {id:'ltgov-fennell-water', office:'Lieutenant Governor', candidate:'David Fennell', type:'Issue/position', topic:'Water storage and agriculture', statement:'His official statement highlights water storage, the Delta, and farmers as priorities, giving his campaign a resource-and-agriculture focus.', question:'How important is this water-and-agriculture emphasis for the Lieutenant Governor role?', sources:['sosLtGov']},
   {id:'ltgov-fennell-wildfire', office:'Lieutenant Governor', candidate:'David Fennell', type:'Issue/position', topic:'Forest management', statement:'His official statement also stresses forest management and wildfire prevention rather than mainly higher-education governance.', question:'Does this wildfire-management focus distinguish him positively or negatively for you?', sources:['sosLtGov']},
   {id:'ltgov-fiona-ma-statewide-fiscal', office:'Lieutenant Governor', candidate:'Fiona Ma', type:'Record/experience', topic:'Statewide fiscal offices', statement:'CalMatters describes this candidate as a longtime statewide official who has served as state treasurer, Board of Equalization member, San Francisco supervisor, and assemblymember.', question:'Does this statewide fiscal and legislative resume make you more interested?', sources:['calmattersLtGovGuide']},
@@ -2695,7 +2695,7 @@ const supplementalCards = [
   {id:'ins-howell-cybersecurity-ceo', office:'Insurance Commissioner', candidate:'Robert P Howell', type:'Record/experience', topic:'Cybersecurity CEO', statement:'Official materials list this candidate as a cybersecurity company CEO, a sharply different profile from the legislators, attorneys, and insurance agents in the race.', question:'Does a cybersecurity-business background translate well to insurance regulation?', sources:['sosCert','calmattersInsuranceArticle']},
   {id:'ins-howell-regulation', office:'Insurance Commissioner', candidate:'Robert P Howell', type:'Issue/position', topic:'Republican regulatory contrast', statement:'As a Republican business candidate in a field with several consumer-progressive proposals, his campaign offers a regulatory contrast centered more on business and market concerns.', question:'Does that market-oriented contrast make you more or less interested?', sources:['calmattersInsuranceArticle','kqedInsurance']},
   {id:'ins-vargas-rate-freeze', office:'Insurance Commissioner', candidate:'Eduardo "Lalo" Vargas', type:'Issue/position', topic:'Rate freezes and claims scrutiny', statement:'His official statement emphasizes freezing insurance rates and investigating claim procedures, placing him on the aggressive consumer-protection side of the race.', question:'How do you react to a rate-freeze and claims-investigation platform?', sources:['sosInsurance']},
-  {id:'ins-vargas-public-insurance', office:'Insurance Commissioner', candidate:'Eduardo "Lalo" Vargas', type:'Issue/position', topic:'Public insurance system', statement:'His Peace and Freedom statement supports a public-insurance direction rather than relying primarily on private-market competition.', question:'Does a public-insurance approach make you more or less interested?', sources:['sosInsurance']},
+  {id:'ins-vargas-public-insurance', office:'Insurance Commissioner', candidate:'Eduardo "Lalo" Vargas', type:'Issue/position', topic:'Public insurance system', statement:'His official candidate statement supports a public-insurance direction rather than relying primarily on private-market competition.', question:'Does a public-insurance approach make you more or less interested?', sources:['sosInsurance']},
 
   {id:'spi-muratsuchi-prop2', office:'Superintendent of Public Instruction', candidate:'Al Muratsuchi', type:'Record/experience', topic:'Education chair and school facilities bond', statement:'CalMatters describes him as an assemblymember, former Assembly Education Committee chair, adjunct college professor, and co-author of the $10 billion Prop. 2 school facilities bond.', question:'Does this legislative education record make him more compelling for Superintendent?', sources:['calmattersSuperintendentGuide']},
   {id:'spi-muratsuchi-doj', office:'Superintendent of Public Instruction', candidate:'Al Muratsuchi', type:'Record/experience', topic:'Legal and higher-ed background', statement:'CalMatters also notes prior work as a deputy attorney general and service as an adjunct government professor at El Camino College.', question:'Does that legal and college-teaching background matter to you for this office?', sources:['calmattersSuperintendentGuide']},
@@ -2740,7 +2740,7 @@ const fiveCardExpansion = [
   {"id":"ltgov-fennell-job-definition","office":"Lieutenant Governor","candidate":"David Fennell","type":"Issue/position","topic":"Broad use of office","statement":"His official statement treats the office as a platform for statewide accountability, water, fire, and cost-of-living issues rather than mainly higher-education board work.","question":"Do you like this broader interpretation of the Lieutenant Governor role?","sources":["sosLtGov"]},
   {"id":"ltgov-fiona-ma-cpa","office":"Lieutenant Governor","candidate":"Fiona Ma","type":"Record/experience","topic":"CPA credential","statement":"Official materials identify this candidate as a CPA and state treasurer, making fiscal management a central part of her profile.","question":"Does a CPA and treasurer profile make her more compelling for Lieutenant Governor?","sources":["sosCert","calmattersLtGovGuide"]},
   {"id":"ltgov-fiona-ma-poll","office":"Lieutenant Governor","candidate":"Fiona Ma","type":"Endorsement/support","topic":"Viability signal","statement":"The main-candidate filter includes this candidate because voter-guide and viability sources treated her as one of the leading statewide Democrats in the race.","question":"Does an established statewide-office profile make you more likely to rate her first?","sources":["calmattersLtGovGuide","kpbsLtGov"]},
-  {"id":"ltgov-romero-school-choice","office":"Lieutenant Governor","candidate":"Gloria Romero","type":"Issue/position","topic":"School choice","statement":"CalMatters describes school choice as a core reason she broke with many Democrats and later became a Republican.","question":"Does a school-choice-centered break with Democrats make you more or less interested?","sources":["calmattersLtGovGuide"]},
+  {"id":"ltgov-romero-school-choice","office":"Lieutenant Governor","candidate":"Gloria Romero","type":"Issue/position","topic":"School choice","statement":"CalMatters describes school choice as a core issue for this candidate, setting her apart from candidates centered on teacher-union support or traditional public-school governance.","question":"Does a school-choice-centered campaign make you more or less interested?","sources":["calmattersLtGovGuide"]},
   {"id":"ltgov-romero-education-business","office":"Lieutenant Governor","candidate":"Gloria Romero","type":"Ballot designation","topic":"Education and business designation","statement":"Official materials list her ballot designation as educator/businesswoman, which pairs with her campaign's education-policy identity.","question":"Does this education-and-business profile make her stand out?","sources":["sosCert","calmattersLtGovGuide"]},
   {"id":"ltgov-tubbs-stockton-mayor","office":"Lieutenant Governor","candidate":"Michael Tubbs","type":"Record/experience","topic":"Former Stockton mayor","statement":"CalMatters describes this candidate as a former Stockton mayor, giving him local-executive experience rooted in a Central Valley city.","question":"Does former-mayor experience from Stockton make him more interesting to you?","sources":["calmattersLtGovGuide","kpbsLtGov"]},
   {"id":"ltgov-tubbs-youth-profile","office":"Lieutenant Governor","candidate":"Michael Tubbs","type":"Record/experience","topic":"Younger anti-poverty figure","statement":"His campaign profile is centered on anti-poverty work and a younger generation of Democratic leadership rather than long service in Sacramento statewide offices.","question":"Does that generational and anti-poverty contrast appeal to you?","sources":["calmattersLtGovGuide"]},
@@ -2800,6 +2800,49 @@ const fiveCardExpansion = [
   {"id":"boe-zaruka-limited-coverage","office":"Board of Equalization, District 2","candidate":"John W. Zaruka","type":"Record/experience","topic":"Limited independent coverage","statement":"Compared with the incumbent and main Democratic challenger, the available independent detail for this candidate is thinner, so the worksheet mostly relies on official designation and party contrast.","question":"Does limited independent coverage make you less comfortable rating him highly?","sources":["sosCert","sfchronBoe"]}
 ];
 cards.push(...fiveCardExpansion);
+
+const lowSignalCardIds = new Set([
+  'gov-becerra-1','gov-bianco-1','gov-hilton-1','gov-mahan-1','gov-porter-1','gov-steyer-1','gov-thurmond-1','gov-villaraigosa-1',
+  'gov-mahan-2','gov-villaraigosa-homebuyer-immigration','gov-thurmond-wealth-tax-education','gov-yee-1',
+  'gov-hilton-poll-leader','gov-hilton-republican-media','gov-becerra-hhs-ag','gov-bianco-sheriff','gov-bianco-republican-base',
+  'gov-steyer-climate-billionaire','gov-steyer-poll-tier','gov-porter-poll-drop','gov-mahan-tech-city','gov-mahan-poll-underdog',
+  'gov-villaraigosa-la-mayor','gov-villaraigosa-centrist-comeback','gov-thurmond-state-schools','gov-thurmond-poll-position',
+
+  'ltgov-fryday-1','ltgov-kellman-free-college','ltgov-kellman-insurance-climate','ltgov-kellman-climate-risk','ltgov-tubbs-ubi','ltgov-fiona-ma-statewide-fiscal',
+  'ltgov-fiona-ma-tuition','ltgov-fiona-ma-cpa','ltgov-fiona-ma-poll','ltgov-romero-party-switch','ltgov-romero-senate-leader',
+  'ltgov-romero-hilton-ticket','ltgov-romero-education-business','ltgov-tubbs-stockton-mayor','ltgov-tubbs-youth-profile',
+  'ltgov-oliver-ma-civil-rights','ltgov-oliver-ma-ballot-designation','ltgov-oliver-ma-source-caution','ltgov-tim-myers-arts',
+  'ltgov-tim-myers-outsider','ltgov-tim-myers-prop28','ltgov-tim-myers-producer','ltgov-josh-fryday-newsom-cabinet',
+  'ltgov-josh-fryday-veterans','ltgov-josh-fryday-newsom-link','ltgov-alice-stek-physician','ltgov-alice-stek-obgyn',
+  'ltgov-alice-stek-left-slate','ltgov-alice-stek-third-party','ltgov-fennell-businessman-party',
+
+  'sos-weber-1','sos-wagner-1','controller-cohen-1','controller-morgan-1','ag-bonta-1','ag-gates-1',
+  'treasurer-caballero-1','treasurer-vazquez-1','treasurer-caballero-housing-ag','treasurer-caballero-moderate','treasurer-caballero-central-valley',
+  'treasurer-kounalakis-diplomat','treasurer-kounalakis-family-business','treasurer-vazquez-boe','treasurer-vazquez-franchise-tax',
+  'treasurer-vazquez-underdog','treasurer-vazquez-labor-roots',
+
+  'ins-allen-1','ins-ben-allen-palisades','ins-ben-allen-legislative','ins-ben-allen-main-dem','ins-bradford-former-senator',
+  'ins-bradford-carrot','ins-bradford-education-board','ins-bradford-la-legislator','ins-kim-1','ins-jane-kim-sf-supervisor',
+  'ins-wolff-1','ins-wolff-technical-expertise','ins-wolff-actuarial-style','ins-wolff-nonpolitician','ins-farren-1',
+  'ins-farren-wildfire-survivor','ins-farren-corporate-legal','ins-farren-republican-consumer','ins-korsgaden-1','ins-korsgaden-agent',
+  'ins-korsgaden-industry-practice','ins-korsgaden-competition','ins-howell-2022-nominee','ins-howell-cybersecurity-ceo',
+  'ins-howell-regulation','ins-howell-gop-rematch','ins-howell-business-regulator','ins-vargas-1','ins-vargas-science-teacher','ins-vargas-left-party',
+
+  'spi-richard-barrera','spi-wendy-castaneda-leal','spi-nichelle-m-henderson','spi-frank-lara','spi-ainye-long','spi-gus-mattammal',
+  'spi-al-muratsuchi','spi-josh-newman','spi-anthony-rendon','spi-sonja-shaw','spi-muratsuchi-cta-fight','spi-muratsuchi-doj',
+  'spi-muratsuchi-local-south-bay','spi-newman-recall-return','spi-rendon-legislative-scale','spi-shaw-parental-rights',
+  'spi-shaw-local-board-president','spi-henderson-community-college','spi-henderson-testing','spi-barrera-thurmond-advisor','spi-barrera-labor-board',
+
+  'boe-sally-j-lieber','boe-john-pimentel','boe-j-brett-marymee','boe-mark-mccomas','boe-bill-shireman','boe-john-w-zaruka',
+  'boe-lieber-incumbent','boe-lieber-legislature','boe-lieber-continuity','boe-lieber-progressive-officeholder','boe-pimentel-community-college',
+  'boe-pimentel-challenger','boe-pimentel-local-finance','boe-pimentel-change-candidate','boe-zaruka-hospitality','boe-zaruka-republican-contrast',
+  'boe-zaruka-private-sector-taxpayer','boe-zaruka-limited-coverage',
+
+  'us15-anthony-van-dang','us15-mantosh-kumar','us15-kevin-mullin','us15-charles-hoelter','us15-jim-garrity',
+  'ad21-papan-1','ad21-muhawieh-1','smc-schools-bonini-1','smc-schools-camacho-1','smc-d3-jimenez-1','smc-d3-mueller-1',
+  'smc-assessor-canepa-1','smc-assessor-irizarry-1','smc-controller-raigoza-1','smc-controller-morgan-1'
+]);
+cards.splice(0, cards.length, ...cards.filter(card=>!lowSignalCardIds.has(card.id)));
 
 const STORAGE_KEY = 'ca_primary_neutral_voter_worksheet_v1';
 let state = loadState();

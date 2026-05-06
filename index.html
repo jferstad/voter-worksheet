@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>California Primary Neutral Voter Worksheet</title>
+<title>California Primary Neutral Voter Worksheet — Precinct 36013</title>
 <style>
   :root{
     --bg:#f7f7f4; --panel:#ffffff; --ink:#1f2937; --muted:#6b7280; --line:#d8d8d0;
@@ -18,7 +18,6 @@
   h3{font-size:1.08rem;margin:1rem 0 .45rem}
   p{margin:.45rem 0}
   .subtitle{font-size:1rem;opacity:.95;max-width:880px}
-  .pillrow{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
   .pill{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);border-radius:999px;padding:.28rem .68rem;font-size:.86rem}
   main{padding:18px}
   .notice{background:#fff7ed;border:1px solid #fed7aa;color:#431407;border-radius:14px;padding:14px 16px;margin:14px 0;box-shadow:0 2px 8px rgba(0,0,0,.03)}
@@ -59,8 +58,7 @@
   label.radio input{position:absolute;opacity:0;pointer-events:none}
   label.radio input:checked + span{background:var(--accent-2);border-color:#64748b;color:#111827;box-shadow:inset 0 0 0 1px #64748b}
   .question{font-weight:760;margin-top:.65rem}
-  .answergrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.6rem}
-  @media(max-width:850px){.answergrid{grid-template-columns:1fr}}
+  .answergrid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:.6rem}
   .statrow{display:flex;gap:.75rem;flex-wrap:wrap}
   .stat{background:white;border:1px solid var(--line);border-radius:14px;padding:10px 12px;min-width:150px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
   .stat strong{font-size:1.35rem;display:block}
@@ -95,15 +93,8 @@
 <header>
   <div class="wrap">
     <div class="small" style="color:#dbeafe">Starter worksheet generated May 4, 2026 · for a California statewide primary ballot research workflow</div>
-    <h1>California Primary Neutral Voter Worksheet</h1>
+    <h1>California Primary Neutral Voter Worksheet — Precinct 36013</h1>
     <p class="subtitle">A local, browser-only app for reviewing source-backed candidate statements, recording your own reactions, and estimating your own candidate fit. It summarizes your ratings without recommending how to vote.</p>
-    <div class="pillrow">
-      <span class="pill">San Mateo County / precinct 36013 starter</span>
-      <span class="pill">Blinded statement cards</span>
-      <span class="pill">Candidate fit scoring</span>
-      <span class="pill">Reveal identities when ready</span>
-      <span class="pill">Export CSV or JSON</span>
-    </div>
   </div>
 </header>
 
@@ -177,7 +168,7 @@
   <section id="tab-scores" class="tab">
     <div class="panel">
       <h2>Candidate fit scores</h2>
-      <p class="muted">These scores are a worksheet summary of your own inputs: direct 1-5 impressions plus blinded-card agreement ratings weighted by your 0-4 importance choices. They are not predictions, endorsements, or recommendations.</p>
+      <p class="muted">These scores are a worksheet summary of your own inputs: direct 1-5 impressions plus blinded-card agreement ratings weighted by your 0-3 importance choices. They are not predictions, endorsements, or recommendations.</p>
       <div class="filters" style="grid-template-columns:1fr .9fr .9fr .9fr">
         <label>Search scores
           <input type="search" id="scoreSearch" placeholder="Search name, office, party, designation…" />
@@ -2960,7 +2951,7 @@ function agreementScore(value){
   return {'Strongly agree':2, 'Agree':1, 'Neutral/unsure':0, 'Disagree':-1, 'Strongly disagree':-2}[value] ?? null;
 }
 function importanceWeight(value){
-  return {'0 - ignore':0, '1 - low':1, '2 - medium':2, '3 - high':3, '4 - decisive':4}[value] ?? null;
+  return {'0 - ignore':0, '1 - low':1, '2 - medium':2, '3 - high':3, '4 - decisive':3}[value] ?? null;
 }
 function scaleScore(sum, maxAbs){ return maxAbs ? Math.round(((sum + maxAbs) / (maxAbs * 2)) * 100) : null; }
 function candidateFit(c){
@@ -3059,11 +3050,10 @@ function renderCard(card){
     <div class="card-top">
       <div>
         ${identity}
-        <div class="meta"><span class="tag office">${escapeHtml(card.office)}</span><span class="tag ${typeClass(card.type)}">${escapeHtml(card.type)}</span><span class="tag">${escapeHtml(card.topic)}</span></div>
       </div>
       <button class="reveal-one reveal" data-reveal="${escapeHtml(card.id)}">${revealed?'Hide this identity':'Reveal identity'}</button>
     </div>
-    <p><strong>Statement:</strong> ${escapeHtml(card.statement)}</p>
+    <p>${escapeHtml(card.statement)}</p>
     <div class="answergrid">
       <div>
         <label class="small"><strong>Agreement with the statement or policy direction</strong></label>
@@ -3082,7 +3072,6 @@ function renderCard(card){
           ${radio(card.id,'importance','1 - low',r.importance)}
           ${radio(card.id,'importance','2 - medium',r.importance)}
           ${radio(card.id,'importance','3 - high',r.importance)}
-          ${radio(card.id,'importance','4 - decisive',r.importance)}
         </div>
       </div>
     </div>

@@ -83,6 +83,14 @@
   .footer{padding:22px 18px 38px;color:var(--muted);font-size:.92rem}
   .candidate-card{display:grid;grid-template-columns:minmax(180px,260px) 1fr;gap:1rem;border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;background:white}
   @media(max-width:700px){.candidate-card{grid-template-columns:1fr}}
+  .impact-details{margin-top:.75rem;background:#fbfbf9}
+  .impact-details summary{display:inline-flex;align-items:center;border:1px solid var(--line);background:white;border-radius:999px;padding:.42rem .7rem;font-weight:800}
+  .impact-list{display:grid;gap:.55rem;margin-top:.65rem}
+  .impact-row{border:1px solid var(--line);border-left:5px solid #64748b;border-radius:12px;padding:.65rem;background:white}
+  .impact-row p{margin:.35rem 0 0}
+  .impact-row.positive{border-left-color:#15803d}
+  .impact-row.negative{border-left-color:#b91c1c}
+  .impact-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.35rem}
   .office-title{border-left:5px solid #64748b;padding-left:.65rem;margin-top:1.4rem}
   .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;background:#f3f4f6;border:1px solid #d1d5db;border-radius:6px;padding:.05rem .35rem;font-size:.82em}
   .empty{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:18px;text-align:center;color:#475569}
@@ -236,6 +244,8 @@ const sources = {
   smcPrecinctMaps: {name:'San Mateo County — Precinct maps', url:'https://www.smcacre.gov/elections/precinct-maps-pdf', note:'County precinct map resources; the photo shows precinct 36013.'},
   apGovDebate: {name:'Associated Press — California Governor debate coverage', url:'https://apnews.com/article/e9c4b4e399ef5642571ef2048f620c6d', note:'Neutral news coverage of candidates and debate topics.'},
   kqedGov: {name:'KQED — California Governor voter guide', url:'https://www.kqed.org/voterguide/california/governor', note:'Questionnaire/interview/debate/news-based candidate summaries and support lists.'},
+  calmattersGovGuide: {name:'CalMatters — Governor voter guide', url:'https://calmatters.org/california-voter-guide-2026/governor/', note:'Nonpartisan voter-guide summaries for leading Governor candidates.'},
+  laistGovGuide: {name:'LAist / CalMatters — Governor voter guide', url:'https://laist.com/news/politics/voter-guides/2026-election-california-primary-california-governor', note:'Voter-guide summaries and interview links for leading Governor candidates.'},
   sfgatePoll: {name:'SFGate — CBS/YouGov Governor poll summary', url:'https://www.sfgate.com/politics/article/cbs-poll-governor-race-debate-22230776.php', note:'Polling snapshot used only to choose a research subset, not to recommend a candidate.'},
   sfgateLatestGovPoll: {name:'SFGate — May 4, 2026 California Democratic Party Governor poll summary', url:'https://www.sfgate.com/politics/article/calif-governor-race-poll-22240696.php', note:'Newest poll found in this May 4 web check; used to filter Governor to candidates named at 1% or higher.'},
   kpbsLtGov: {name:'KPBS / CalMatters — Lieutenant Governor race explainer', url:'https://www.kpbs.org/news/politics/2026/05/04/2026-primary-election-california-lieutenant-governor-race-explainer', note:'Voter-guide context for major Lieutenant Governor candidates and endorsements.'},
@@ -262,6 +272,14 @@ const sources = {
   sfchronHilton: {name:'San Francisco Chronicle — Steve Hilton Governor interview summary', url:'https://www.sfchronicle.com/projects/2026/california-governor-election-candidates/steve-hilton/', note:'Candidate interview summary; may be paywalled.'},
   sfchronVillaraigosa: {name:'San Francisco Chronicle — Antonio Villaraigosa Governor interview', url:'https://www.sfchronicle.com/video/article/california-governor-election-antonio-villaraigosa-22240306.php', note:'Candidate interview summary on a one-term pledge and policy priorities; may be paywalled.'},
   guardianMahan: {name:'The Guardian — Matt Mahan profile', url:'https://www.theguardian.com/us-news/2026/jan/29/california-governor-race-matt-mahan', note:'News profile with campaign themes.'},
+  growsfMahanGov: {name:'GrowSF — Matt Mahan Governor questionnaire', url:'https://growsf.org/voter-guide/questionnaires/june-2026/matt-mahan/', note:'Candidate questionnaire responses; candidate-supplied and published by a local voter-guide organization.'},
+  growsfVillaraigosaGov: {name:'GrowSF — Antonio Villaraigosa Governor questionnaire', url:'https://growsf.org/voter-guide/questionnaires/june-2026/antonio-villaraigosa/', note:'Candidate questionnaire responses; candidate-supplied and published by a local voter-guide organization.'},
+  latimesVillaraigosaLegacy: {name:'Los Angeles Times — Villaraigosa mayoral legacy', url:'https://www.latimes.com/local/california/la-me-villaraigosa-legacy-20130629-dto-story.html', note:'Local reporting on Villaraigosa mayoral record, including transit, public safety, schools, and fiscal caveats.'},
+  latimesPorterTuition: {name:'Los Angeles Times — Katie Porter college-tuition plan', url:'https://www.latimes.com/california/newsletter/2026-03-09/skelton-monday-politics-newsletter-porter-college-tuition', note:'Column reporting on Porter’s tuition-free higher education proposal and proposed corporate-tax funding.'},
+  hiltonEducationPlan: {name:'Steve Hilton campaign — education plan', url:'https://stevehiltonforgovernor.com/policy/steve-hiltons-plan-to-fix-public-education-by-3rd-grade/', note:'Candidate-supplied education platform; not independently verified.'},
+  hiltonTaxPlan: {name:'Steve Hilton campaign — tax plan', url:'https://stevehiltonforgovernor.com/policy/a-califordable-tax-plan/', note:'Candidate-supplied tax platform; not independently verified.'},
+  biancoEducationPlan: {name:'Chad Bianco campaign — education priorities', url:'https://biancoforgovernor.com/education/', note:'Candidate-supplied education platform; not independently verified.'},
+  thurmondPriorities: {name:'Tony Thurmond campaign — priorities', url:'https://www.tonythurmond.com/priorities', note:'Candidate-supplied priorities; not independently verified.'},
   sosBoe: {name:'Official Voter Information Guide — Board of Equalization candidate statements', url:'https://voterguide.sos.ca.gov/candidates/boe-candidate-statements.htm', note:'Candidate-supplied statements for Board of Equalization candidates who purchased space.'},
   smDailyJournalD3: {name:'San Mateo Daily Journal — District 3 supervisor race', url:'https://www.smdailyjournal.com/news/local/incumbent-opponent-run-for-san-mateo-county-supervisor-representing-district-3-supervisor-ray-mueller-runs/article_d219037a-c347-46c1-8cdb-e705d8788d90.html', note:'Local reporting on Ray Mueller, Joaquin Jimenez, and District 3 issues.'},
   smDailyJournalSchools: {name:'San Mateo Daily Journal — County Superintendent of Schools race', url:'https://www.smdailyjournal.com/news/local/chelsea-bonini-and-h-ctor-camacho-in-race-for-san-mateo-county-superintendent-of-schools/article_8ec15d0c-780e-4ca9-b046-d837b1bf9ef7.html', note:'Local reporting on Chelsea Bonini, Héctor Camacho Jr., and the County Superintendent role.'},
@@ -2952,6 +2970,63 @@ const researchedQualityCards = [
 ];
 cards.push(...researchedQualityCards);
 
+const duplicateCardIds = new Set([
+  'gov-becerra-homelessness-prevention-fund',
+  'gov-becerra-4',
+  'gov-bianco-2',
+  'gov-mahan-modular-home-factories',
+  'gov-mahan-interim-shelter-enforcement',
+  'gov-porter-2',
+  'gov-porter-homelessness-services',
+  'gov-hilton-2',
+  'gov-steyer-2',
+  'gov-steyer-factory-built-state-projects',
+  'gov-steyer-interim-housing-services',
+  'gov-thurmond-redevelopment-homeless-services',
+  'gov-villaraigosa-homekey-treatment',
+  'ltgov-kellman-homelessness-response',
+  'treasurer-caballero-affordable-housing-priority',
+  'treasurer-kounalakis-housing-infrastructure',
+  'treasurer-vazquez-housing-partnerships',
+  'spi-muratsuchi-prop2-facilities',
+  'spi-newman-facilities',
+  'spi-shaw-trans-student-policy'
+]);
+cards.splice(0, cards.length, ...cards.filter(card=>!duplicateCardIds.has(card.id)));
+
+const topicReplacementCards = [
+  {id:'gov-becerra-utility-insurance-freeze', office:'Governor', candidate:'Xavier Becerra', type:'Issue/position', topic:'Utility and insurance rates', statement:'LAist reports that he wants to declare a state of emergency to freeze utility and insurance rates, while also revisiting climate goals to keep fuel affordable.', question:'How much do you support this emergency-rate-freeze approach?', sources:['laistGovGuide']},
+
+  {id:'gov-bianco-income-gas-tax', office:'Governor', candidate:'Chad Bianco', type:'Issue/position', topic:'Income tax and gas tax', statement:'Voter-guide coverage says he wants to eliminate California income tax and the gas tax as part of his affordability platform.', question:'How much do you support eliminating those state taxes?', sources:['laistGovGuide']},
+  {id:'gov-bianco-environmental-regulation-suspension', office:'Governor', candidate:'Chad Bianco', type:'Issue/position', topic:'Environmental regulation rollback', statement:'LAist reports that he is pushing to suspend numerous state regulations, especially environmental rules, while also boosting oil and gas production.', question:'How much do you support this regulatory rollback approach?', sources:['laistGovGuide']},
+
+  {id:'gov-mahan-transit-performance-funding', office:'Governor', candidate:'Matt Mahan', type:'Issue/position', topic:'Transit performance funding', statement:'In a candidate questionnaire, he says transit funding should be tied to ridership growth and farebox recovery, with safety, cleanliness, coordinated schedules, and agency consolidation as part of the fix.', question:'How much do you support performance-based transit funding?', sources:['growsfMahanGov']},
+  {id:'gov-mahan-ceqa-grid-industry', office:'Governor', candidate:'Matt Mahan', type:'Issue/position', topic:'CEQA and clean-energy infrastructure', statement:'He supports comprehensive CEQA overhaul and ministerial approvals for projects he says are critical to job creation, including clean-energy, water, and grid infrastructure.', question:'How much do you support this CEQA streamlining approach?', sources:['growsfMahanGov']},
+  {id:'gov-mahan-phonics-tutoring', office:'Governor', candidate:'Matt Mahan', type:'Issue/position', topic:'Reading and tutoring', statement:'His questionnaire emphasizes phonics, intensive tutoring, school-day enrichment, and stronger evaluation of whether students are on grade level.', question:'How important is this reading-and-tutoring agenda to you?', sources:['growsfMahanGov']},
+  {id:'gov-mahan-progress-audit-taxes', office:'Governor', candidate:'Matt Mahan', type:'Issue/position', topic:'Tax guardrails and audits', statement:'He says California should not raise taxes without first auditing spending and proving existing programs are delivering measurable results.', question:'How much do you agree with this no-new-taxes-without-audit stance?', sources:['growsfMahanGov']},
+
+  {id:'gov-villaraigosa-measure-r-transit', office:'Governor', candidate:'Antonio Villaraigosa', type:'Record/experience', topic:'Transit expansion record', statement:'As Los Angeles mayor, he championed Measure R, the local sales-tax measure that helped fund major rail and transit expansion across Los Angeles County.', question:'How much does this transit-expansion record matter?', sources:['calmattersGovGuide','latimesVillaraigosaLegacy']},
+  {id:'gov-villaraigosa-transit-ridership-safety', office:'Governor', candidate:'Antonio Villaraigosa', type:'Issue/position', topic:'Transit ridership and safety', statement:'In a candidate questionnaire, he says the state should stabilize transit funding while tying support to safety, frequency, reliability, and ridership recovery.', question:'How much do you support this transit-funding approach?', sources:['growsfVillaraigosaGov']},
+  {id:'gov-villaraigosa-higher-ed-appointments', office:'Governor', candidate:'Antonio Villaraigosa', type:'Issue/position', topic:'Higher-education governance', statement:'He says governor-appointed UC regents and CSU trustees should be selected for commitment to affordability, access, labor fairness, and student outcomes.', question:'How much do higher-education appointments matter to you?', sources:['growsfVillaraigosaGov']},
+  {id:'gov-villaraigosa-budget-reserves', office:'Governor', candidate:'Antonio Villaraigosa', type:'Issue/position', topic:'Budget reserves and accountability', statement:'He says California should rebuild reserves, avoid using one-time money for permanent programs, and tie new spending to measurable outcomes.', question:'How much do you value this budget-discipline stance?', sources:['growsfVillaraigosaGov']},
+
+  {id:'gov-porter-tuition-tax-detail', office:'Governor', candidate:'Katie Porter', type:'Issue/position', topic:'Corporate taxes and tuition', statement:'Her college plan would raise California corporate taxes on higher-earning companies to fund two tuition-free years at UC, CSU, or community college for eligible in-state students.', question:'How much do you support this corporate-tax-for-tuition plan?', sources:['latimesPorterTuition','kqedGov']},
+  {id:'gov-porter-transit-oriented-housing', office:'Governor', candidate:'Katie Porter', type:'Issue/position', topic:'Transit-oriented housing', statement:'CalMatters says she supports denser housing near public transit while opposing broader SB 9-style duplex expansion in single-family neighborhoods.', question:'How much do you agree with this transit-oriented housing line?', sources:['calmattersGovGuide']},
+
+  {id:'gov-steyer-ai-worker-tax', office:'Governor', candidate:'Tom Steyer', type:'Issue/position', topic:'AI tax and worker transition', statement:'Voter-guide coverage says he supports taxing AI companies to help workers displaced by artificial intelligence.', question:'How much do you support an AI-industry tax for worker transition?', sources:['laistGovGuide','calmattersGovGuide']},
+  {id:'gov-steyer-utility-monopoly', office:'Governor', candidate:'Tom Steyer', type:'Issue/position', topic:'Utility monopoly regulation', statement:'Voter-guide coverage says he wants to challenge investor-owned utility monopolies and lower electricity bills as part of his affordability agenda.', question:'How much does utility-monopoly regulation matter to you?', sources:['kqedGov','calmattersGovGuide']},
+
+  {id:'gov-thurmond-reading-third-grade', office:'Governor', candidate:'Tony K. Thurmond', type:'Issue/position', topic:'Third-grade reading', statement:'His campaign priorities include a five-year plan to ensure every California student can read by third grade.', question:'How important is third-grade reading policy in your Governor rating?', sources:['thurmondPriorities']},
+  {id:'gov-thurmond-education-tax-credit', office:'Governor', candidate:'Tony K. Thurmond', type:'Issue/position', topic:'Education tax credit and free degree', statement:'His campaign priorities include a state-level affordability tax credit, universal childcare, and a free four-year CSU or UC pilot program.', question:'How much do you support this education-affordability agenda?', sources:['thurmondPriorities','sosGov']},
+
+  {id:'gov-hilton-third-grade-accountability', office:'Governor', candidate:'Steve Hilton', type:'Issue/position', topic:'Third-grade school accountability', statement:'His education plan would require public school grades based on third-grade proficiency and would put repeatedly failing schools under state-directed special measures.', question:'How much do you support this third-grade accountability model?', sources:['hiltonEducationPlan']},
+  {id:'gov-hilton-no-tax-tips', office:'Governor', candidate:'Steve Hilton', type:'Issue/position', topic:'Tax cuts for workers', statement:'His tax plan would exempt the first $100,000 of income from state income tax, eliminate state tax on tips, and end the $800 small business tax.', question:'How much do you support these income-tax and small-business tax cuts?', sources:['hiltonTaxPlan']},
+
+  {id:'gov-bianco-parental-choice', office:'Governor', candidate:'Chad Bianco', type:'Issue/position', topic:'School choice and parental rights', statement:'His education platform emphasizes parental rights, fundamental skills, career-technical education, and expanding access to high-performing charter schools.', question:'How much do you support this school-choice and parental-rights agenda?', sources:['biancoEducationPlan']},
+  {id:'gov-bianco-campus-safety', office:'Governor', candidate:'Chad Bianco', type:'Issue/position', topic:'Campus safety and school resource officers', statement:'His education platform supports access to trained school resource officers on public-school campuses and more counseling and mental-health programs.', question:'How much do campus safety and school-resource-officer policies matter to you?', sources:['biancoEducationPlan']}
+];
+cards.push(...topicReplacementCards);
+
 const STORAGE_KEY = 'ca_primary_neutral_voter_worksheet_v1';
 let state = loadState();
 let revealedAll = !!state.revealedAll;
@@ -3275,6 +3350,36 @@ function candidateScoreBlock(c){
   const scoreText = fit.score === null ? '—' : `${fit.score}`;
   return `<div class="scoreline"><span class="scorebig">${scoreText}</span><span>${escapeHtml(fitLabel(fit.score))}</span><span class="small">${fit.completedInputs}/${fit.possibleInputs} rating inputs filled</span></div><div class="scorebar" aria-label="Fit score"><span style="width:${width}%"></span></div>`;
 }
+function cardImpact(card){
+  const r = getResponse(card.id);
+  const agreement = agreementScore(r.agreement);
+  const weightInput = importanceWeight(r.importance);
+  const weight = weightInput !== null ? weightInput : 2;
+  if(agreement === null || weight <= 0) return null;
+  const impact = agreement * weight;
+  if(!impact) return null;
+  return {card, response:r, impact, weight};
+}
+function candidateImpactCards(c){
+  return candidateCards(c).map(cardImpact).filter(Boolean).sort((a,b)=>Math.abs(b.impact)-Math.abs(a.impact));
+}
+function scoreImpactDetails(c){
+  const impacts = candidateImpactCards(c);
+  if(!impacts.length) return '';
+  const positive = impacts.filter(item=>item.impact > 0).length;
+  const negative = impacts.filter(item=>item.impact < 0).length;
+  const items = impacts.map(({card, response, impact})=>{
+    const direction = impact > 0 ? 'Increased fit' : 'Decreased fit';
+    const cls = impact > 0 ? 'positive' : 'negative';
+    const signed = impact > 0 ? `+${impact}` : `${impact}`;
+    return `<div class="impact-row ${cls}">
+      <strong>${escapeHtml(direction)} (${escapeHtml(signed)})</strong>
+      <p>${escapeHtml(card.statement)}</p>
+      <div class="impact-meta small"><span>${escapeHtml(card.topic)}</span><span>${escapeHtml(response.agreement || '')}</span><span>${escapeHtml(response.importance || '2 - medium default')}</span></div>
+    </div>`;
+  }).join('');
+  return `<details class="impact-details"><summary>Show scoring cards (${positive} raised, ${negative} lowered)</summary><div class="impact-list">${items}</div></details>`;
+}
 function candidatePollBlock(c){
   const pct = pollInfo(c);
   const filter = pollFilters[c.office];
@@ -3386,7 +3491,7 @@ function renderScores(){
     }
     const direct = fit.directScore === null ? 'Not rated directly' : `${fit.directScore}/100 from your 1-5 impression`;
     const statements = fit.statementScore === null ? 'No statement-card ratings yet' : `${fit.statementScore}/100 from blinded-card agreement weighted by importance`;
-    html += `<div class="candidate-card"><div><strong>${escapeHtml(c.name)}</strong><div class="small">${escapeHtml(c.office)}</div><div class="small">${escapeHtml(c.party)}${c.party?' · ':''}${escapeHtml(c.designation || '')}</div></div><div>${candidateScoreBlock(c)}<p class="small">${escapeHtml(direct)} · ${escapeHtml(statements)}</p>${fit.note ? `<p>${escapeHtml(fit.note)}</p>` : ''}${candidateRatingControls(c)}</div></div>`;
+    html += `<div class="candidate-card"><div><strong>${escapeHtml(c.name)}</strong><div class="small">${escapeHtml(c.office)}</div><div class="small">${escapeHtml(c.party)}${c.party?' · ':''}${escapeHtml(c.designation || '')}</div></div><div>${candidateScoreBlock(c)}<p class="small">${escapeHtml(direct)} · ${escapeHtml(statements)}</p>${scoreImpactDetails(c)}${fit.note ? `<p>${escapeHtml(fit.note)}</p>` : ''}${candidateRatingControls(c)}</div></div>`;
   }
   container.innerHTML=html;
   bindCandidateInputs(container);

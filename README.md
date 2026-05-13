@@ -1,6 +1,6 @@
 # California Primary Neutral Voter Worksheet
 
-This is a single-file, offline browser app intended to help a voter compare California statewide and local primary candidates through blinded, source-backed issue/record/endorsement statements.
+This is a static, offline browser app intended to help a voter compare California statewide and local primary candidates through blinded, source-backed issue/record/endorsement statements.
 
 ## How to run
 
@@ -9,7 +9,8 @@ Open `index.html` directly in a browser. No build step or server is required.
 ## What the app currently does
 
 - Presents blinded statements tied to candidate records, policy positions, background, and endorsements.
-- Defaults the blinded survey to main-candidate cards first, with a toggle to show all card candidates.
+- Starts on a three-phase Survey page: blinded cards, optional source trust ratings, then fit scores.
+- Defaults the blinded card flow to main-candidate cards first, with a filter to show all card candidates.
 - Lets the user rate agreement and candidate-research interest separately.
 - Lets the user record an overall 1-5 impression for every candidate in the candidate list.
 - Shows candidate fit scores based only on the user's own ratings and answered cards.
@@ -30,7 +31,7 @@ Open `index.html` directly in a browser. No build step or server is required.
 
 ## Suggested Codex refinement tasks
 
-1. Split `index.html` into `src/data.js`, `src/app.js`, and `styles.css` while keeping a no-build static deployment option.
+1. Split the remaining app behavior and styles out of `index.html` while keeping a no-build static deployment option.
 2. Add a clearer scoring model that separately reports:
    - issue agreement,
    - experience/record interest,
@@ -45,6 +46,10 @@ Open `index.html` directly in a browser. No build step or server is required.
 
 ## Files
 
-- `index.html` — full app.
+- `index.html` — app markup, styles, and behavior.
+- `data/sources.js` — source metadata and URLs.
+- `data/candidates.js` — candidate roster.
+- `data/cards.js` — blinded survey cards and card expansions.
+- `data/poll-filters.js` — main-candidate filter rules.
+- `data/glossary.js` — glossary terms used for inline definitions.
 - `ballot-photo.jpeg` — original ballot photo used to infer the rough jurisdiction context.
-- `codex_prompt.md` — a ready-to-paste prompt for Codex.

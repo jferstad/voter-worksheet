@@ -1319,6 +1319,28 @@ window.voterWorksheetData.candidates = [
     ]
   },
   {
+    "office": "Judge of the Superior Court, Office No. 4",
+    "name": "Brian Donnellan",
+    "party": "Nonpartisan",
+    "designation": "County of San Mateo Deputy District Attorney",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster",
+      "vote411JudgeOffice4"
+    ]
+  },
+  {
+    "office": "Judge of the Superior Court, Office No. 4",
+    "name": "Jay Boyarsky",
+    "party": "Nonpartisan",
+    "designation": "Chief Deputy District Attorney, County of Santa Clara",
+    "scope": "County",
+    "sources": [
+      "sanMateoRoster",
+      "vote411JudgeOffice4"
+    ]
+  },
+  {
     "office": "San Mateo County Superintendent of Schools",
     "name": "Chelsea Bonini",
     "party": "Nonpartisan",

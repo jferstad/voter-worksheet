@@ -1352,18 +1352,8 @@ window.voterWorksheetData.candidates = [
     "office": "San Mateo County Board of Supervisors, District 3",
     "name": "Ray Mueller",
     "party": "Nonpartisan",
-    "designation": "Incumbent",
+    "designation": "San Mateo County Supervisor / Educator",
     "scope": "County District 3",
-    "sources": [
-      "sanMateoRoster"
-    ]
-  },
-  {
-    "office": "San Mateo County Assessor-County Clerk-Recorder",
-    "name": "Clinton Eric Freeman",
-    "party": "Nonpartisan",
-    "designation": "No Ballot Designation",
-    "scope": "County",
     "sources": [
       "sanMateoRoster"
     ]
@@ -1383,16 +1373,6 @@ window.voterWorksheetData.candidates = [
     "name": "Jim Irizarry",
     "party": "Nonpartisan",
     "designation": "Assistant County Assessor",
-    "scope": "County",
-    "sources": [
-      "sanMateoRoster"
-    ]
-  },
-  {
-    "office": "San Mateo County Controller",
-    "name": "Thomas Royal Morgan II",
-    "party": "Nonpartisan",
-    "designation": "No Ballot Designation",
     "scope": "County",
     "sources": [
       "sanMateoRoster"
